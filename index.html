@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Udita!</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Preparing something special...</p>
+            <div class="loading-jokes">
+                <span class="joke active">🎂 Baking virtual cake...</span>
+                <span class="joke">🎈 Inflating balloons...</span>
+                <span class="joke">🎉 Adding confetti...</span>
+                <span class="joke">✨ Sprinkling magic...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Question Screen -->
+    <div id="question-screen" class="question-screen hidden">
+        <div class="question-container">
+            <div class="question-emoji">🤔</div>
+            <h1 class="question-title">Wait a minute...</h1>
+            <h2 class="main-question">Is it your birthday today?</h2>
+            <p class="question-subtitle">Be honest now! 👀</p>
+            
+            <div class="answer-buttons">
+                <button id="yes-btn" class="answer-btn yes-btn">
+                    <span class="btn-emoji">✅</span>
+                    <span class="btn-text">Yes!</span>
+                </button>
+                <button id="no-btn" class="answer-btn no-btn">
+                    <span class="btn-emoji">❌</span>
+                    <span class="btn-text">No...</span>
+                </button>
+            </div>
+            
+            <div class="suspicious-eyes">👁️👁️</div>
+        </div>
+    </div>
+
+    <!-- Response Screen -->
+    <div id="response-screen" class="response-screen hidden">
+        <div class="response-container">
+            <div class="response-emoji"></div>
+            <h2 class="response-title"></h2>
+            <p class="response-message"></p>
+            <button id="proceed-btn" class="proceed-btn">
+                <span>Let's Proceed! 🎉</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar hidden">
+        <div class="nav-brand">UDITA</div>
+        <div class="nav-toggle">
+            <span class="nav-item">Birthday</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content hidden">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-label">HAPPY BIRTHDAY</div>
+                <h1 class="hero-title">From idea to action,<br>without friction.</h1>
+                <div class="hero-subtitle">
+                    <span class="year">2024</span>
+                    <span class="separator">|</span>
+                    <span class="occasion">BIRTHDAY</span>
+                </div>
+                <div class="hero-brand">UDITA</div>
+                <div class="social-links">
+                    <a href="#" class="social-link">✕</a>
+                    <a href="#" class="social-link">📷</a>
+                </div>
+                <div class="hero-description">
+                    <p>This project is a personal web birthday message created today<br>
+                    for creative and exciting purposes. It does not represent a real<br>
+                    company, product, or service, and is not affiliated with any<br>
+                    commercial entity. This is purely for celebration purposes.</p>
+                </div>
+                <div class="credits">
+                    Concept, design and development done by Friend
+                </div>
+            </div>
+            
+            <!-- Visual Elements -->
+            <div class="hero-visual">
+                <div class="silhouette-person"></div>
+                <div class="laptop-device">
+                    <div class="laptop-screen"></div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-dot"></div>
+            </div>
+        </section>
+
+        <!-- Birthday Section -->
+        <section id="birthday" class="birthday-section">
+            <div class="birthday-content">
+                <div class="birthday-text">
+                    <span class="section-label">CELEBRATE</span>
+                    <h2 class="birthday-title">From birthday wishes<br>to endless memories.</h2>
+                    <p class="birthday-description">
+                        Another year of amazing adventures, growth, and<br>
+                        countless moments that make life beautiful.<br>
+                        Here's to celebrating you today and always.
+                    </p>
+                    
+                    <div class="birthday-stats">
+                        <div class="stat clickable" onclick="this.classList.add('wiggle')">
+                            <span class="stat-number">MORE</span>
+                            <span class="stat-label">MEMORIES</span>
+                        </div>
+                        <div class="stat clickable" onclick="this.classList.add('wiggle')">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">WISHES</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="birthday-visual">
+                    <div class="visual-container">
+                        <div class="floating-elements">
+                            <span class="float-emoji">🎈</span>
+                            <span class="float-emoji">🎂</span>
+                            <span class="float-emoji">✨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishes Section -->
+        <section id="wishes" class="wishes-section">
+            <div class="wishes-container">
+                <h2 class="wishes-title">Special Birthday Wishes</h2>
+                <div class="wishes-grid">
+                    <div class="wish-card" onclick="flipCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-emoji">🎂</div>
+                                <h3>Sweet Moments</h3>
+                                <p>Click to reveal!</p>
+                            </div>
+                            <div class="card-back">
+                                <p>May your birthday be filled with sweet moments and wonderful memories that last a lifetime!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wish-card" onclick="flipCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-emoji">🌟</div>
+                                <h3>Bright Future</h3>
+                                <p>Click to reveal!</p>
+                            </div>
+                            <div class="card-back">
+                                <p>May your path ahead be illuminated with success, happiness, and endless possibilities!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wish-card" onclick="flipCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-emoji">🎈</div>
+                                <h3>Joy & Laughter</h3>
+                                <p>Click to reveal!</p>
+                            </div>
+                            <div class="card-back">
+                                <p>May your days be filled with laughter, your heart with joy, and your life with love!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div id="particles"></div>
+    <div id="confetti-container"></div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
