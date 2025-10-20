@@ -4,6 +4,12 @@
     width: 80px;
     height: 80px;
     animation: heartPulse 2s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.pulsing-heart:hover {
+    transform: scale(1.1);
 }
 
 .heart-core {
@@ -72,29 +78,32 @@
     animation: particleFloat 3s ease-in-out infinite;
 }
 
-.particle-1 {
-    top: 10px;
-    left: 10px;
-    animation-delay: 0s;
+.particle-1 { top: 10px; left: 10px; animation-delay: 0s; }
+.particle-2 { top: 10px; right: 10px; animation-delay: 0.5s; }
+.particle-3 { bottom: 20px; left: 20px; animation-delay: 1s; }
+.particle-4 { bottom: 20px; right: 20px; animation-delay: 1.5s; }
+.particle-5 { top: 50%; left: 5px; animation-delay: 2s; }
+.particle-6 { top: 50%; right: 5px; animation-delay: 2.5s; }
+
+/* Heart Rings */
+.heart-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
-.particle-2 {
-    top: 10px;
-    right: 10px;
-    animation-delay: 0.5s;
+.ring {
+    position: absolute;
+    border: 2px solid rgba(242, 156, 184, 0.3);
+    border-radius: 50%;
+    animation: ringExpand 3s ease-out infinite;
 }
 
-.particle-3 {
-    bottom: 20px;
-    left: 20px;
-    animation-delay: 1s;
-}
-
-.particle-4 {
-    bottom: 20px;
-    right: 20px;
-    animation-delay: 1.5s;
-}
+.ring-1 { width: 60px; height: 60px; margin: -30px 0 0 -30px; animation-delay: 0s; }
+.ring-2 { width: 80px; height: 80px; margin: -40px 0 0 -40px; animation-delay: 1s; }
+.ring-3 { width: 100px; height: 100px; margin: -50px 0 0 -50px; animation-delay: 2s; }
 
 /* Coded Butterfly Animation Styles */
 .flying-butterfly-coded {
@@ -102,19 +111,30 @@
     width: 60px;
     height: 60px;
     animation: butterflyFlight 8s ease-in-out infinite;
+    cursor: pointer;
+    transition: filter 0.3s ease;
 }
 
 .butterfly-body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 3px;
-    height: 40px;
-    background: linear-gradient(to bottom, #8B4513, #654321);
-    border-radius: 2px;
     transform: translate(-50%, -50%);
     z-index: 2;
 }
+
+.body-segment {
+    width: 4px;
+    height: 12px;
+    background: linear-gradient(to bottom, #8B4513, #654321, #4A2C17);
+    border-radius: 2px;
+    margin-bottom: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.segment-1 { width: 3px; height: 8px; }
+.segment-2 { width: 4px; height: 14px; }
+.segment-3 { width: 3px; height: 10px; }
 
 .butterfly-wings {
     position: relative;
@@ -127,68 +147,24 @@
     background: linear-gradient(45deg, var(--medium-pink), var(--light-pink));
     border-radius: 50%;
     animation: wingFlap 0.3s ease-in-out infinite alternate;
+    box-shadow: 0 2px 8px rgba(242, 156, 184, 0.3);
 }
 
-.wing-top-left {
-    top: 5px;
-    left: 5px;
-    width: 20px;
-    height: 25px;
-    transform-origin: bottom right;
-}
-
-.wing-top-right {
-    top: 5px;
-    right: 5px;
-    width: 20px;
-    height: 25px;
-    transform-origin: bottom left;
-}
-
-.wing-bottom-left {
-    bottom: 5px;
-    left: 10px;
-    width: 15px;
-    height: 20px;
-    transform-origin: top right;
-}
-
-.wing-bottom-right {
-    bottom: 5px;
-    right: 10px;
-    width: 15px;
-    height: 20px;
-    transform-origin: top left;
-}
+.wing-top-left { top: 5px; left: 5px; width: 20px; height: 25px; transform-origin: bottom right; }
+.wing-top-right { top: 5px; right: 5px; width: 20px; height: 25px; transform-origin: bottom left; }
+.wing-bottom-left { bottom: 5px; left: 10px; width: 15px; height: 20px; transform-origin: top right; }
+.wing-bottom-right { bottom: 5px; right: 10px; width: 15px; height: 20px; transform-origin: top left; }
 
 .wing-pattern {
     position: absolute;
     border-radius: 50%;
 }
 
-.pattern-1 {
-    top: 3px;
-    left: 3px;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.pattern-2 {
-    bottom: 3px;
-    right: 3px;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.4);
-}
-
-.pattern-3 {
-    top: 2px;
-    left: 2px;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-}
+.pattern-1 { top: 3px; left: 3px; width: 6px; height: 6px; background: rgba(255, 255, 255, 0.6); }
+.pattern-2 { bottom: 3px; right: 3px; width: 4px; height: 4px; background: rgba(255, 255, 255, 0.4); }
+.pattern-3 { top: 2px; left: 2px; width: 5px; height: 5px; background: rgba(255, 255, 255, 0.5); }
+.pattern-4 { top: 2px; left: 2px; width: 5px; height: 5px; background: rgba(255, 255, 255, 0.5); }
+.pattern-5 { bottom: 2px; right: 2px; width: 4px; height: 4px; background: rgba(255, 255, 255, 0.4); }
 
 .butterfly-antennae {
     position: absolute;
@@ -204,25 +180,18 @@
     background: #654321;
 }
 
-.antenna-left {
-    left: -3px;
-    transform: rotate(-20deg);
-}
+.antenna-left { left: -3px; transform: rotate(-20deg); }
+.antenna-right { right: -3px; transform: rotate(20deg); }
 
-.antenna-right {
-    right: -3px;
-    transform: rotate(20deg);
-}
-
-.antenna::after {
-    content: '';
+.antenna-tip {
     position: absolute;
-    top: 0;
+    top: -2px;
     left: -1px;
-    width: 3px;
-    height: 3px;
-    background: var(--medium-pink);
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, var(--medium-pink), var(--deep-pink));
     border-radius: 50%;
+    box-shadow: 0 0 4px rgba(242, 156, 184, 0.6);
 }
 
 .butterfly-trail {
@@ -244,521 +213,238 @@
     animation: trailFloat 2s ease-in-out infinite;
 }
 
-.trail-particle:nth-child(1) {
-    top: 20%;
-    left: 20%;
-    animation-delay: 0s;
+.trail-1 { top: 20%; left: 20%; animation-delay: 0s; }
+.trail-2 { top: 60%; right: 20%; animation-delay: 0.5s; }
+.trail-3 { bottom: 20%; left: 40%; animation-delay: 1s; }
+.trail-4 { top: 40%; right: 40%; animation-delay: 1.5s; }
+
+.butterfly-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 8px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.2), transparent);
+    border-radius: 50%;
+    animation: shadowMove 8s ease-in-out infinite;
 }
 
-.trail-particle:nth-child(2) {
-    top: 60%;
-    right: 20%;
-    animation-delay: 0.7s;
-}
-
-.trail-particle:nth-child(3) {
-    bottom: 20%;
-    left: 40%;
-    animation-delay: 1.4s;
-}
-
-/* Keyframe Animations */
-@keyframes smoothSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes dotDance {
-    0%, 100% { 
-        opacity: 0.4; 
-        transform: scale(1) translateY(0); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: scale(1.3) translateY(-10px); 
-    }
-}
-
-@keyframes floatGently {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-15px) rotate(1deg); 
-    }
-}
-
-@keyframes textGlow {
-    0%, 100% { 
-        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); 
-    }
-    50% { 
-        text-shadow: 0 2px 20px rgba(242, 156, 184, 0.6); 
-    }
-}
-
-@keyframes questionFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-12px) rotate(0.5deg); 
-    }
-}
-
-@keyframes shimmer {
-    0% { 
-        transform: translateX(-100%) translateY(-100%) rotate(45deg); 
-    }
-    100% { 
-        transform: translateX(100%) translateY(100%) rotate(45deg); 
-    }
-}
-
-@keyframes emojiWiggle {
-    0%, 100% { 
-        transform: rotate(0deg) scale(1); 
-    }
-    25% { 
-        transform: rotate(-8deg) scale(1.05); 
-    }
-    75% { 
-        transform: rotate(8deg) scale(1.05); 
-    }
-}
-
-@keyframes titleBounce {
-    0%, 100% { 
-        transform: scale(1) translateY(0); 
-    }
-    50% { 
-        transform: scale(1.02) translateY(-5px); 
-    }
-}
-
-@keyframes questionPulse {
-    0%, 100% { 
-        transform: scale(1); 
-    }
-    50% { 
-        transform: scale(1.03); 
-    }
-}
-
-@keyframes subtitleSway {
-    0%, 100% { 
-        transform: translateX(0); 
-    }
-    50% { 
-        transform: translateX(5px); 
-    }
-}
-
-@keyframes buttonPress {
-    0% { 
-        transform: scale(1); 
-    }
-    50% { 
-        transform: scale(0.95); 
-    }
-    100% { 
-        transform: scale(1); 
-    }
-}
-
-@keyframes eyesSpy {
-    0%, 100% { 
-        transform: translateX(0) scale(1); 
-    }
-    25% { 
-        transform: translateX(-8px) scale(1.1); 
-    }
-    75% { 
-        transform: translateX(8px) scale(1.1); 
-    }
-}
-
-@keyframes gentleFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-15px) rotate(1deg); 
-    }
-}
-
-@keyframes responseFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-10px) rotate(1deg); 
-    }
-}
-
-@keyframes responseSpin {
-    0% { 
-        transform: rotate(0deg) scale(1); 
-    }
-    25% { 
-        transform: rotate(90deg) scale(1.1); 
-    }
-    50% { 
-        transform: rotate(180deg) scale(1.2); 
-    }
-    75% { 
-        transform: rotate(270deg) scale(1.1); 
-    }
-    100% { 
-        transform: rotate(360deg) scale(1); 
-    }
-}
-
-@keyframes titleWave {
-    0%, 100% { 
-        transform: translateY(0) scale(1); 
-    }
-    50% { 
-        transform: translateY(-8px) scale(1.05); 
-    }
-}
-
-@keyframes messageSlide {
-    0% { 
-        opacity: 0; 
-        transform: translateY(30px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes proceedPulse {
-    0% { 
-        transform: scale(1); 
-    }
-    50% { 
-        transform: scale(1.05); 
-    }
-    100% { 
-        transform: scale(1); 
-    }
-}
-
-@keyframes navFloat {
-    0%, 100% { 
-        transform: translateX(-50%) translateY(0); 
-    }
-    50% { 
-        transform: translateX(-50%) translateY(-5px); 
-    }
-}
-
-@keyframes heroGreeting {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.5) translateY(50px); 
-    }
-    50% { 
-        opacity: 0.8; 
-        transform: scale(1.1) translateY(-10px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
-@keyframes titleSlideIn {
-    0% { 
-        opacity: 0; 
-        transform: translateX(-100px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateX(0); 
-    }
-}
-
-@keyframes subtitleFadeIn {
-    0% { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes brandBounce {
-    0% { 
-        opacity: 0; 
-        transform: scale(0.3) translateY(100px); 
-    }
-    50% { 
-        opacity: 0.8; 
-        transform: scale(1.2) translateY(-20px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-    }
-}
-
-@keyframes sparkle {
-    0%, 100% { 
-        opacity: 0.5; 
-        transform: scale(1) rotate(0deg); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: scale(1.3) rotate(180deg); 
-    }
-}
-
-@keyframes socialSlide {
-    0% { 
-        opacity: 0; 
-        transform: translateY(50px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes descriptionFade {
-    0% { 
-        opacity: 0; 
-        transform: translateY(30px); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-/* Heart Animation Keyframes */
-@keyframes heartPulse {
-    0%, 100% { 
-        transform: scale(1); 
-    }
-    25% { 
-        transform: scale(1.1); 
-    }
-    50% { 
-        transform: scale(1.2); 
-    }
-    75% { 
-        transform: scale(1.1); 
-    }
-}
-
-@keyframes glowPulse {
-    0%, 100% { 
-        opacity: 0.4; 
-        transform: translate(-50%, -50%) scale(1); 
-    }
-    50% { 
-        opacity: 0.8; 
-        transform: translate(-50%, -50%) scale(1.3); 
-    }
-}
-
-@keyframes particleFloat {
-    0%, 100% { 
-        opacity: 0.6; 
-        transform: translateY(0); 
-    }
-    50% { 
-        opacity: 1; 
-        transform: translateY(-15px); 
-    }
-}
-
-/* Butterfly Animation Keyframes */
-@keyframes butterflyFlight {
-    0% { 
-        transform: translateY(0) translateX(0) rotate(0deg); 
-    }
-    25% { 
-        transform: translateY(-20px) translateX(-15px) rotate(-5deg); 
-    }
-    50% { 
-        transform: translateY(-10px) translateX(-30px) rotate(3deg); 
-    }
-    75% { 
-        transform: translateY(-25px) translateX(-15px) rotate(-3deg); 
-    }
-    100% { 
-        transform: translateY(0) translateX(0) rotate(0deg); 
-    }
-}
-
-@keyframes wingFlap {
-    0% { 
-        transform: rotateX(0deg); 
-    }
-    100% { 
-        transform: rotateX(30deg); 
-    }
-}
-
-@keyframes trailFloat {
-    0%, 100% { 
-        opacity: 0.6; 
-        transform: translateY(0) scale(1); 
-    }
-    50% { 
-        opacity: 0.2; 
-        transform: translateY(-10px) scale(0.8); 
-    }
-}
-
-/* Other Effect Animations */
-@keyframes continuousConfettiFall {
+/* Enhanced Confetti Animations */
+@keyframes enhancedConfettiFall {
     0% {
-        transform: translateY(-10px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0.3;
-    }
-}
-
-@keyframes cakeFall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.8;
-    }
-}
-
-@keyframes popupAppear {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes glowExpand {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.8;
-    }
-    100% {
-        width: 200vw;
-        height: 200vh;
-        opacity: 0;
-    }
-}
-
-@keyframes starFall {
-    0% {
-        transform: translateY(-100px) translateX(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) translateX(200px) rotate(720deg);
-        opacity: 0;
-    }
-}
-
-@keyframes statShine {
-    0% { 
-        transform: translateX(-100%) translateY(-100%) rotate(45deg); 
-    }
-    100% { 
-        transform: translateX(100%) translateY(100%) rotate(45deg); 
-    }
-}
-
-@keyframes messageShine {
-    0% { 
-        left: -100%; 
-    }
-    100% { 
-        left: 100%; 
-    }
-}
-
-@keyframes emojiFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-10px) rotate(5deg); 
-    }
-}
-
-@keyframes confettiFall {
-    0% {
-        transform: translateY(-100vh) rotate(0deg) scale(1);
+        transform: translateY(-10px) rotate(0deg) scale(1);
         opacity: 1;
     }
     25% {
-        opacity: 0.8;
-        transform: translateY(-50vh) rotate(180deg) scale(0.8);
+        opacity: 0.9;
+        transform: translateY(25vh) rotate(180deg) scale(0.9);
     }
     50% {
-        opacity: 0.6;
-        transform: translateY(0vh) rotate(360deg) scale(1.2);
+        opacity: 0.7;
+        transform: translateY(50vh) rotate(360deg) scale(1.1);
     }
     75% {
-        opacity: 0.4;
-        transform: translateY(50vh) rotate(540deg) scale(0.9);
+        opacity: 0.5;
+        transform: translateY(75vh) rotate(540deg) scale(0.8);
     }
     100% {
-        transform: translateY(100vh) rotate(720deg) scale(0.5);
+        transform: translateY(100vh) rotate(720deg) scale(0.6);
         opacity: 0;
     }
 }
 
-@keyframes clickBurst {
-    0% { 
-        opacity: 1; 
-        transform: scale(0.5); 
+/* Single Click Emoji Spawn Animation */
+@keyframes singleEmojiSpawn {
+    0% {
+        opacity: 1;
+        transform: scale(0.3) rotate(0deg);
     }
-    50% { 
-        opacity: 0.8; 
-        transform: scale(1.5); 
+    20% {
+        opacity: 0.9;
+        transform: scale(1.3) rotate(72deg);
     }
-    100% { 
-        opacity: 0; 
-        transform: scale(2); 
+    40% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(144deg);
+    }
+    60% {
+        opacity: 0.6;
+        transform: scale(0.9) rotate(216deg) translateY(-30px);
+    }
+    80% {
+        opacity: 0.3;
+        transform: scale(0.7) rotate(288deg) translateY(-50px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2) rotate(360deg) translateY(-80px);
     }
 }
 
-@keyframes floatAway {
-    0% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
+/* Enhanced Star Glow Wave Animation */
+@keyframes starGlowExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.9;
+        transform: translate(-50%, -50%) rotate(0deg);
     }
-    100% { 
-        opacity: 0; 
-        transform: translateY(-100px) scale(0.5); 
+    25% {
+        width: 50vw;
+        height: 50vh;
+        opacity: 0.8;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    50% {
+        width: 150vw;
+        height: 150vh;
+        opacity: 0.6;
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+    75% {
+        width: 250vw;
+        height: 250vh;
+        opacity: 0.3;
+        transform: translate(-50%, -50%) rotate(270deg);
+    }
+    100% {
+        width: 350vw;
+        height: 350vh;
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
-@keyframes wiggle {
-    0%, 100% { 
-        transform: rotate(0deg) scale(1); 
+/* Enhanced Star Fall Animation */
+@keyframes enhancedStarFall {
+    0% {
+        transform: translateY(-100px) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
     }
-    25% { 
-        transform: rotate(-5deg) scale(1.05); 
+    25% {
+        transform: translateY(25vh) translateX(50px) rotate(180deg) scale(1.2);
+        opacity: 0.9;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
     }
-    75% { 
-        transform: rotate(5deg) scale(1.05); 
+    50% {
+        transform: translateY(50vh) translateX(100px) rotate(360deg) scale(1);
+        opacity: 0.7;
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.6));
     }
+    75% {
+        transform: translateY(75vh) translateX(150px) rotate(540deg) scale(0.8);
+        opacity: 0.4;
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+    }
+    100% {
+        transform: translateY(100vh) translateX(200px) rotate(720deg) scale(0.5);
+        opacity: 0;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    }
+}
+
+/* All Other Keyframe Animations */
+@keyframes smoothSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes dotDance { 0%, 100% { opacity: 0.4; transform: scale(1) translateY(0); } 50% { opacity: 1; transform: scale(1.3) translateY(-10px); } }
+@keyframes floatGently { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+@keyframes textGlow { 0%, 100% { text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); } 50% { text-shadow: 0 2px 20px rgba(242, 156, 184, 0.6); } }
+@keyframes questionFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(0.5deg); } }
+@keyframes shimmer { 0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); } 100% { transform: translateX(100%) translateY(100%) rotate(45deg); } }
+@keyframes emojiWiggle { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-8deg) scale(1.05); } 75% { transform: rotate(8deg) scale(1.05); } }
+@keyframes titleBounce { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.02) translateY(-5px); } }
+@keyframes questionPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+@keyframes subtitleSway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@keyframes buttonPress { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+@keyframes eyesSpy { 0%, 100% { transform: translateX(0) scale(1); } 25% { transform: translateX(-8px) scale(1.1); } 75% { transform: translateX(8px) scale(1.1); } }
+@keyframes gentleFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+@keyframes responseFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+@keyframes responseSpin { 0% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(90deg) scale(1.1); } 50% { transform: rotate(180deg) scale(1.2); } 75% { transform: rotate(270deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
+@keyframes titleWave { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.05); } }
+@keyframes messageSlide { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes proceedPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes navFloat { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+@keyframes heroGreeting { 0% { opacity: 0; transform: scale(0.5) translateY(50px); } 50% { opacity: 0.8; transform: scale(1.1) translateY(-10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes titleSlideIn { 0% { opacity: 0; transform: translateX(-100px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes subtitleFadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes brandBounce { 0% { opacity: 0; transform: scale(0.3) translateY(100px); } 50% { opacity: 0.8; transform: scale(1.2) translateY(-20px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes sparkle { 0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); } 50% { opacity: 1; transform: scale(1.3) rotate(180deg); } }
+@keyframes socialSlide { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes descriptionFade { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes heartPulse { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.1); } 50% { transform: scale(1.2); } 75% { transform: scale(1.1); } }
+@keyframes glowPulse { 0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.3); } }
+@keyframes particleFloat { 0%, 100% { opacity: 0.6; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-15px); } }
+@keyframes ringExpand { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes butterflyFlight { 0% { transform: translateY(0) translateX(0) rotate(0deg); } 25% { transform: translateY(-20px) translateX(-15px) rotate(-5deg); } 50% { transform: translateY(-10px) translateX(-30px) rotate(3deg); } 75% { transform: translateY(-25px) translateX(-15px) rotate(-3deg); } 100% { transform: translateY(0) translateX(0) rotate(0deg); } }
+@keyframes wingFlap { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(30deg); } }
+@keyframes trailFloat { 0%, 100% { opacity: 0.6; transform: translateY(0) scale(1); } 50% { opacity: 0.2; transform: translateY(-10px) scale(0.8); } }
+@keyframes shadowMove { 0%, 100% { transform: translateX(-50%) scale(1); } 25% { transform: translateX(-60%) scale(0.8); } 50% { transform: translateX(-40%) scale(1.2); } 75% { transform: translateX(-60%) scale(0.9); } }
+@keyframes continuousConfettiFall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0.3; } }
+@keyframes partyConfettiFall { 0% { transform: translateY(-10px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0.3; } }
+@keyframes cakeFall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0.8; } }
+@keyframes popupAppear { 0% { transform: translate(-50%, -50%) scale(0); opacity: 0; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+@keyframes glowExpand { 0% { width: 0; height: 0; opacity: 0.8; } 100% { width: 200vw; height: 200vh; opacity: 0; } }
+@keyframes starFall { 0% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) translateX(200px) rotate(720deg); opacity: 0; } }
+@keyframes statShine { 0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); } 100% { transform: translateX(100%) translateY(100%) rotate(45deg); } }
+@keyframes messageShine { 0% { left: -100%; } 100% { left: 100%; } }
+@keyframes emojiFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+@keyframes confettiFall { 0% { transform: translateY(-100vh) rotate(0deg) scale(1); opacity: 1; } 25% { opacity: 0.8; transform: translateY(-50vh) rotate(180deg) scale(0.8); } 50% { opacity: 0.6; transform: translateY(0vh) rotate(360deg) scale(1.2); } 75% { opacity: 0.4; transform: translateY(50vh) rotate(540deg) scale(0.9); } 100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; } }
+@keyframes clickBurst { 0% { opacity: 1; transform: scale(0.5); } 50% { opacity: 0.8; transform: scale(1.5); } 100% { opacity: 0; transform: scale(2); } }
+@keyframes floatAway { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-100px) scale(0.5); } }
+@keyframes wiggle { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-5deg) scale(1.05); } 75% { transform: rotate(5deg) scale(1.05); } }
+@keyframes musicBar { 0%, 100% { height: 15px; opacity: 0.6; transform: scaleY(1); } 50% { height: 50px; opacity: 1; transform: scaleY(1.2); } }
+@keyframes scrollFadeIn { 0% { opacity: 0; transform: translateY(50px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes visualizerShine { 0% { left: -100%; } 100% { left: 100%; } }
+@keyframes progressShine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes fadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Slideshow Animations */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.9);
+    }
+}
+
+@keyframes pictureGlow {
+    0%, 100% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 15px 35px rgba(242, 156, 184, 0.4);
+    }
+}
+
+@keyframes captionPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Apply animations to active slides */
+.slide.active .picture-frame {
+    animation: pictureGlow 3s ease-in-out infinite;
+}
+
+.slide.active .slide-caption {
+    animation: captionPulse 2s ease-in-out infinite;
 }

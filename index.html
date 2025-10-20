@@ -22,7 +22,7 @@
     <!-- Heart Cursor Trail Container -->
     <div id="heart-trail-container"></div>
 
-    <!-- Loading Screen -->
+    <!-- Loading Screen (NO CONFETTI) -->
     <div class="loading-container" id="loading-screen">
         <div class="loader">
             <div class="loading-circle">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <!-- Question Screen -->
+    <!-- Question Screen (NO CONFETTI) -->
     <div class="question-container" id="question-screen">
         <div class="question-content">
             <div class="question-emoji">🤔</div>
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <!-- Response Screen -->
+    <!-- Response Screen (MASSIVE CONFETTI AFTER YES/NO) -->
     <div class="response-container" id="response-screen">
         <div class="response-content">
             <div class="response-emoji" id="response-emoji"></div>
@@ -75,7 +75,7 @@
                 Let's Party! 🎉✨
             </button>
         </div>
-        <!-- Confetti for Let's Party button page -->
+        <!-- MASSIVE Confetti for Response Screen -->
         <div class="party-confetti" id="party-confetti"></div>
     </div>
 
@@ -84,11 +84,15 @@
         <!-- Continuous Confetti -->
         <div class="continuous-confetti" id="continuous-confetti"></div>
         
-        <!-- Coded Heart Animation - Top Left -->
-        <div class="coded-heart-animation" id="coded-heart"></div>
+        <!-- PERMANENT Coded Heart Animation - Top Left -->
+        <div class="coded-heart-animation" id="coded-heart">
+            <!-- Content will be injected by coded-animations.js -->
+        </div>
         
-        <!-- Coded Butterfly Animation - Right Middle -->
-        <div class="coded-butterfly-animation" id="coded-butterfly"></div>
+        <!-- PERMANENT Coded Butterfly Animation - Right Middle -->
+        <div class="coded-butterfly-animation" id="coded-butterfly">
+            <!-- Content will be injected by coded-animations.js -->
+        </div>
 
         <!-- Navigation -->
         <nav class="navbar">
@@ -97,7 +101,7 @@
 
         <div class="main-content">
             <!-- Hero Section -->
-            <div class="hero-section">
+            <div class="hero-section scroll-animate">
                 <h1 class="hero-greeting">Happy Birthday Cutuee!</h1>
                 <h2 class="hero-title">Step into the future.</h2>
                 <div class="hero-subtitle">
@@ -122,7 +126,7 @@
             </div>
 
             <!-- Birthday Stats -->
-            <div class="birthday-stats">
+            <div class="birthday-stats scroll-animate">
                 <div class="stat" onclick="wiggleStat(this)">
                     <div class="stat-number">∞</div>
                     <div class="stat-label">WISHES FOR YOU</div>
@@ -142,7 +146,7 @@
             </div>
 
             <!-- Birthday Message -->
-            <div class="birthday-message">
+            <div class="birthday-message scroll-animate">
                 <h2>🎊 The Most Epic Birthday Celebration! 🎊</h2>
                 <p>
                     Another year of being absolutely incredible! 🌟 You've grown, laughed, 
@@ -154,10 +158,14 @@
             </div>
 
             <!-- Song Dedication Section -->
-            <div class="song-dedication" onclick="openSongPopup()">
+            <div class="song-dedication scroll-animate" onclick="openSongPopup()">
                 <div class="song-card">
                     <div class="album-cover">
-                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" />
+                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="album-placeholder" style="display: none;">
+                            <div class="placeholder-icon">🎵</div>
+                            <span>Album Cover</span>
+                        </div>
                         <div class="play-overlay">
                             <div class="play-button">
                                 <div class="play-icon">▶</div>
@@ -178,63 +186,129 @@
                 </div>
             </div>
 
-            <!-- Song Popup -->
-            <div id="song-popup" class="song-popup hidden">
-                <div class="popup-content">
-                    <button class="close-popup" onclick="closeSongPopup()">×</button>
-                    <div class="popup-header">
-                        <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" />
-                        <div class="song-details">
-                            <h3>At My Worst</h3>
-                            <p>Pink Sweat$</p>
+            <!-- Picture Slideshow Section -->
+            <div class="picture-slideshow scroll-animate">
+                <h2 class="slideshow-title">📸 A Little Story About You 📸</h2>
+                <div class="slideshow-container">
+                    <div class="slideshow-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content">
+                                <div class="picture-frame">
+                                    <img src="assets/picture1.jpg" alt="The pretty girl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="picture-placeholder" style="display: none;">
+                                        <div class="placeholder-icon">📷</div>
+                                        <span>Picture 1</span>
+                                    </div>
+                                </div>
+                                <div class="slide-caption">
+                                    <h3>The Pretty Girl</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transition Text 1 -->
+                        <div class="slide transition-slide" data-slide="2">
+                            <div class="slide-content">
+                                <div class="transition-text">
+                                    <h3>who is also...</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content">
+                                <div class="picture-frame">
+                                    <img src="assets/picture2.jpg" alt="A little dumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="picture-placeholder" style="display: none;">
+                                        <div class="placeholder-icon">📷</div>
+                                        <span>Picture 2</span>
+                                    </div>
+                                </div>
+                                <div class="slide-caption">
+                                    <h3>A Little Dumb</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transition Text 2 -->
+                        <div class="slide transition-slide" data-slide="4">
+                            <div class="slide-content">
+                                <div class="transition-text">
+                                    <h3>but...</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="5">
+                            <div class="slide-content">
+                                <div class="picture-frame">
+                                    <img src="assets/picture3.jpg" alt="The cutest" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="picture-placeholder" style="display: none;">
+                                        <div class="placeholder-icon">📷</div>
+                                        <span>Picture 3</span>
+                                    </div>
+                                </div>
+                                <div class="slide-caption">
+                                    <h3>The Cutest</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transition Text 3 -->
+                        <div class="slide transition-slide" data-slide="6">
+                            <div class="slide-content">
+                                <div class="transition-text">
+                                    <h3>also...</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="slide" data-slide="7">
+                            <div class="slide-content">
+                                <div class="picture-frame">
+                                    <img src="assets/picture4.jpg" alt="The most awesome person" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="picture-placeholder" style="display: none;">
+                                        <div class="placeholder-icon">📷</div>
+                                        <span>Picture 4</span>
+                                    </div>
+                                </div>
+                                <div class="slide-caption">
+                                    <h3>The Most Awesome Person</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="music-visualizer">
-                        <div class="bar bar1"></div>
-                        <div class="bar bar2"></div>
-                        <div class="bar bar3"></div>
-                        <div class="bar bar4"></div>
-                        <div class="bar bar5"></div>
-                        <div class="bar bar6"></div>
-                        <div class="bar bar7"></div>
-                        <div class="bar bar8"></div>
-                    </div>
-                    
-                    <div class="sweet-message">
-                        <h4>💕 My Message to You 💕</h4>
-                        <p>
-                            "At my worst, you still see the best in me. At my lowest, you lift me up. 
-                            At my darkest, you are my light. This song reminds me of how lucky I am 
-                            to have someone like you in my life. You make every day brighter, every 
-                            moment sweeter, and every challenge easier to face. Happy Birthday to the 
-                            most amazing person I know! 🌟💖"
-                        </p>
-                        <div class="message-signature">
-                            <span>With all my love,</span>
-                            <span class="signature">Your Favorite Person 💕</span>
+
+                    <!-- Slideshow Controls -->
+                    <div class="slideshow-controls">
+                        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+                        <div class="slide-indicators">
+                            <span class="indicator active" onclick="currentSlide(1)"></span>
+                            <span class="indicator" onclick="currentSlide(2)"></span>
+                            <span class="indicator" onclick="currentSlide(3)"></span>
+                            <span class="indicator" onclick="currentSlide(4)"></span>
+                            <span class="indicator" onclick="currentSlide(5)"></span>
+                            <span class="indicator" onclick="currentSlide(6)"></span>
+                            <span class="indicator" onclick="currentSlide(7)"></span>
                         </div>
+                        <button class="slide-btn next-btn" onclick="changeSlide(1)">❯</button>
                     </div>
-                    
-                    <div class="music-controls">
-                        <button id="play-pause-btn" class="control-btn" onclick="toggleSong()">
-                            <span id="play-pause-icon">▶</span>
+
+                    <!-- Auto-play Toggle -->
+                    <div class="slideshow-options">
+                        <button class="auto-play-btn" onclick="toggleAutoPlay()">
+                            <span id="auto-play-icon">⏸</span> Auto-Play
                         </button>
-                        <div class="progress-container">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-fill"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="current-time">0:00</span>
-                                <span id="total-time">0:00</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Wishes Grid -->
-            <div class="wishes-grid">
+            <div class="wishes-grid scroll-animate">
                 <div class="wish-card" onclick="createClickEffect(event)">
                     <div class="emoji">🎂</div>
                     <h3>Sweet Dreams Come True</h3>
@@ -272,7 +346,7 @@
                 </div>
             </div>
             
-            <div style="margin-top: 80px; text-align: center; font-size: 16px; opacity: 0.8;">
+            <div style="margin-top: 80px; text-align: center; font-size: 16px; opacity: 0.8;" class="scroll-animate">
                 <p>🎨 Concept, design and development done with ❤️ by your favorite person</p>
                 <p style="margin-top: 20px; font-family: 'Dancing Script', cursive; font-size: 24px;">
                     "Because you deserve all the magic in the world!" ✨
@@ -281,9 +355,78 @@
         </div>
     </div>
 
+    <!-- Song Popup -->
+    <div id="song-popup" class="song-popup hidden">
+        <div class="popup-content">
+            <button class="close-popup" onclick="closeSongPopup()">×</button>
+            <div class="popup-header">
+                <div class="popup-album-cover-container">
+                    <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="album-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🎵</div>
+                        <span>Album Cover</span>
+                    </div>
+                </div>
+                <div class="song-details">
+                    <h3>At My Worst</h3>
+                    <p>Pink Sweat$</p>
+                </div>
+            </div>
+            
+            <div class="music-visualizer" id="music-visualizer">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+            
+            <div class="sweet-message">
+                <h4>💕 My Message to You 💕</h4>
+                <p>
+                    "At my worst, you still see the best in me. At my lowest, you lift me up. 
+                    At my darkest, you are my light. This song reminds me of how lucky I am 
+                    to have someone like you in my life. You make every day brighter, every 
+                    moment sweeter, and every challenge easier to face. Happy Birthday to the 
+                    most amazing person I know! 🌟💖"
+                </p>
+                <div class="message-signature">
+                    <span>With all my love,</span>
+                    <span class="signature">Your Favorite Person 💕</span>
+                </div>
+            </div>
+            
+            <div class="music-controls">
+                <button id="play-pause-btn" class="control-btn" onclick="toggleSong()">
+                    <span id="play-pause-icon">▶</span>
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar" onclick="seekSong(event)">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="total-time">0:00</span>
+                    </div>
+                </div>
+                <button id="volume-btn" class="control-btn" onclick="toggleMute()">
+                    <span id="volume-icon">🔊</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Confetti Container -->
     <div id="confetti-container"></div>
 
+    <!-- Single Click Emoji Container -->
+    <div id="single-click-emoji-container"></div>
+
+    <!-- PERMANENT CODED ANIMATIONS SCRIPT - LOAD FIRST -->
+    <script src="js/coded-animations.js"></script>
     <script src="js/heart-trail.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>

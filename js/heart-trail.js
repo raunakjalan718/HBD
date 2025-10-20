@@ -2,10 +2,9 @@ class HeartTrail {
     constructor() {
         this.container = document.getElementById('heart-trail-container');
         this.hearts = [];
-        this.maxHearts = 20; // Increased from 12
+        this.maxHearts = 25; // Increased for longer trail
         this.mouseX = 0;
         this.mouseY = 0;
-        this.trailLength = 15; // Increased trail length
         this.init();
     }
 
@@ -15,11 +14,11 @@ class HeartTrail {
             return;
         }
 
-        // Reduced throttle for longer trail
+        // Reduced throttle for longer, smoother trail
         let lastMoveTime = 0;
         document.addEventListener('mousemove', (e) => {
             const now = performance.now();
-            if (now - lastMoveTime > 30) { // Reduced from 50ms to 30ms
+            if (now - lastMoveTime > 25) { // Reduced from 30ms
                 this.mouseX = e.clientX;
                 this.mouseY = e.clientY;
                 this.createHeart(e.clientX, e.clientY);
@@ -28,20 +27,19 @@ class HeartTrail {
         });
 
         this.createMainCursor();
-        this.setupSingleClickEmojiSpawn();
     }
 
     createMainCursor() {
         const mainCursor = document.createElement('div');
         mainCursor.className = 'main-heart-cursor';
-        mainCursor.innerHTML = this.createHeartSVG(28, '#E91E63'); // Slightly larger
+        mainCursor.innerHTML = this.createHeartSVG(30, '#E91E63'); // Larger cursor
         
         mainCursor.style.cssText = `
             position: fixed;
             pointer-events: none;
             z-index: 10001;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease;
         `;
@@ -56,7 +54,7 @@ class HeartTrail {
         // Enhanced hover effects
         document.addEventListener('mouseenter', (e) => {
             if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card')) {
-                mainCursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                mainCursor.style.transform = 'translate(-50%, -50%) scale(2)';
             }
         }, true);
 
@@ -74,7 +72,7 @@ class HeartTrail {
         heart.className = 'coded-heart-trail';
         
         // Enhanced size and opacity variation
-        const size = Math.random() * 10 + 14; // 14-24px (increased)
+        const size = Math.random() * 12 + 16; // 16-28px (increased)
         const opacity = Math.random() * 0.5 + 0.5; // 0.5-1.0
         
         heart.style.cssText = `
@@ -87,7 +85,7 @@ class HeartTrail {
             z-index: 9999;
             opacity: ${opacity};
             transform: translate(-50%, -50%);
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         `;
         
         heart.innerHTML = this.createHeartSVG(size, this.getRandomPinkColor());
@@ -107,9 +105,9 @@ class HeartTrail {
         setTimeout(() => {
             if (heart.parentNode) {
                 heart.style.opacity = '0';
-                heart.style.transform = 'translate(-50%, -50%) scale(0.2) translateY(-40px) rotate(15deg)';
+                heart.style.transform = 'translate(-50%, -50%) scale(0.1) translateY(-50px) rotate(20deg)';
             }
-        }, 150);
+        }, 200);
 
         // Remove heart after longer animation
         setTimeout(() => {
@@ -120,58 +118,12 @@ class HeartTrail {
             if (index > -1) {
                 this.hearts.splice(index, 1);
             }
-        }, 1350); // Increased from 900ms
-    }
-
-    setupSingleClickEmojiSpawn() {
-        document.addEventListener('click', (e) => {
-            // Don't spawn on interactive elements
-            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .close-popup')) {
-                return;
-            }
-            
-            this.createClickEmoji(e.clientX, e.clientY);
-        });
-    }
-
-    createClickEmoji(x, y) {
-        const emojis = [
-            '🎉', '✨', '💖', '🎂', '🎈', '🦄', '🌟', '💫', '🎊', '🥳',
-            '💕', '🌸', '🌺', '🌷', '🌹', '💐', '🎀', '👑', '💎', '🦋',
-            '🍰', '🧁', '🍭', '🍬', '🎪', '🎨', '🎭', '🎵', '🎶', '💝'
-        ];
-
-        for (let i = 0; i < 5; i++) {
-            setTimeout(() => {
-                const emoji = document.createElement('div');
-                emoji.className = 'click-spawn-emoji';
-                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                
-                const offsetX = (Math.random() - 0.5) * 80;
-                const offsetY = (Math.random() - 0.5) * 80;
-                
-                emoji.style.cssText = `
-                    position: fixed;
-                    left: ${x + offsetX}px;
-                    top: ${y + offsetY}px;
-                    font-size: ${Math.random() * 1 + 1.5}rem;
-                    pointer-events: none;
-                    z-index: 9998;
-                    user-select: none;
-                `;
-                
-                document.body.appendChild(emoji);
-                
-                setTimeout(() => {
-                    emoji.remove();
-                }, 2000);
-            }, i * 100);
-        }
+        }, 1700); // Increased duration
     }
 
     createHeartSVG(size, color) {
         return `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 ${size/3}px ${color}60);">
+            <svg width="${size}" height="${size}" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 ${size/2}px ${color}80);">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
                       fill="${color}" 
                       opacity="0.9">
