@@ -2,10 +2,17 @@ class HeartTrail {
     constructor() {
         this.container = document.getElementById('heart-trail-container');
         this.hearts = [];
-        this.maxHearts = 25; // Increased for longer trail
+        this.maxHearts = 25;
         this.mouseX = 0;
         this.mouseY = 0;
+        this.isMobile = this.detectMobile();
         this.init();
+    }
+
+    detectMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+               ('ontouchstart' in window) || 
+               (navigator.maxTouchPoints > 0);
     }
 
     init() {
@@ -14,11 +21,13 @@ class HeartTrail {
             return;
         }
 
-        // Reduced throttle for longer, smoother trail
+        // Optimized for mobile performance
+        const throttleDelay = this.isMobile ? 40 : 25;
         let lastMoveTime = 0;
+        
         document.addEventListener('mousemove', (e) => {
             const now = performance.now();
-            if (now - lastMoveTime > 25) { // Reduced from 30ms
+            if (now - lastMoveTime > throttleDelay) {
                 this.mouseX = e.clientX;
                 this.mouseY = e.clientY;
                 this.createHeart(e.clientX, e.clientY);
@@ -26,13 +35,31 @@ class HeartTrail {
             }
         });
 
+        // Touch support for mobile
+        if (this.isMobile) {
+            document.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const now = performance.now();
+                if (now - lastMoveTime > throttleDelay) {
+                    this.mouseX = touch.clientX;
+                    this.mouseY = touch.clientY;
+                    this.createHeart(touch.clientX, touch.clientY);
+                    lastMoveTime = now;
+                }
+            }, { passive: false });
+        }
+
         this.createMainCursor();
     }
 
     createMainCursor() {
+        // Don't show custom cursor on mobile
+        if (this.isMobile) return;
+
         const mainCursor = document.createElement('div');
         mainCursor.className = 'main-heart-cursor';
-        mainCursor.innerHTML = this.createHeartSVG(30, '#E91E63'); // Larger cursor
+        mainCursor.innerHTML = this.createHeartSVG(30, '#E91E63');
         
         mainCursor.style.cssText = `
             position: fixed;
@@ -53,13 +80,13 @@ class HeartTrail {
 
         // Enhanced hover effects
         document.addEventListener('mouseenter', (e) => {
-            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card')) {
+            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .slide-btn')) {
                 mainCursor.style.transform = 'translate(-50%, -50%) scale(2)';
             }
         }, true);
 
         document.addEventListener('mouseleave', (e) => {
-            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card')) {
+            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .slide-btn')) {
                 mainCursor.style.transform = 'translate(-50%, -50%) scale(1)';
             }
         }, true);
@@ -71,9 +98,9 @@ class HeartTrail {
         const heart = document.createElement('div');
         heart.className = 'coded-heart-trail';
         
-        // Enhanced size and opacity variation
-        const size = Math.random() * 12 + 16; // 16-28px (increased)
-        const opacity = Math.random() * 0.5 + 0.5; // 0.5-1.0
+        // Mobile-optimized size and opacity
+        const size = this.isMobile ? Math.random() * 8 + 12 : Math.random() * 12 + 16;
+        const opacity = Math.random() * 0.5 + 0.5;
         
         heart.style.cssText = `
             position: fixed;
@@ -118,7 +145,7 @@ class HeartTrail {
             if (index > -1) {
                 this.hearts.splice(index, 1);
             }
-        }, 1700); // Increased duration
+        }, 1700);
     }
 
     createHeartSVG(size, color) {

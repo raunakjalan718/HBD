@@ -166,7 +166,7 @@ class BirthdayWebsite {
     setupSingleClickEmojiSpawn() {
         document.addEventListener('click', (e) => {
             // Don't spawn on interactive elements
-            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .close-popup, .control-btn, .progress-bar')) {
+            if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .close-popup, .control-btn, .progress-bar, .slide-btn, .indicator, .auto-play-btn')) {
                 return;
             }
             
@@ -239,7 +239,7 @@ class BirthdayWebsite {
         const colors = ['#F29CB8', '#F48FB1', '#FCE4EC', '#F8BBD9', '#EC407A', '#FFB6C1', '#FFC0CB'];
         
         // Create multiple confetti pieces at once
-        for (let i = 0; i < 5; i++) { // Increased from 4
+        for (let i = 0; i < 5; i++) {
             const confetti = document.createElement('div');
             confetti.className = 'confetti-piece';
             confetti.style.left = Math.random() * 100 + '%';
@@ -266,7 +266,7 @@ class BirthdayWebsite {
         
         // Create MASSIVE confetti explosion
         const partyInterval = setInterval(() => {
-            for (let i = 0; i < 40; i++) { // MASSIVELY increased from 25
+            for (let i = 0; i < 40; i++) { // MASSIVELY increased
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'party-confetti-piece';
@@ -295,13 +295,149 @@ class BirthdayWebsite {
                             confetti.remove();
                         }
                     }, 4000);
-                }, i * 15); // Much faster spawn
+                }, i * 15);
             }
-        }, 100); // Much faster interval
+        }, 100);
 
         setTimeout(() => {
             clearInterval(partyInterval);
-        }, 25000); // Longer duration
+        }, 25000);
+    }
+}
+
+// Slideshow functionality
+let currentSlideIndex = 1;
+let totalSlides = 7;
+let autoPlayInterval = null;
+let isAutoPlaying = false; // Changed to false for paused by default
+
+function initializeSlideshow() {
+    showSlide(currentSlideIndex);
+    // Don't start autoplay by default
+    
+    // Set initial button state to show play icon
+    const autoPlayIcon = document.getElementById('auto-play-icon');
+    const autoPlayBtn = document.querySelector('.auto-play-btn');
+    
+    if (autoPlayIcon) autoPlayIcon.textContent = '▶';
+    if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.4)';
+}
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (n > totalSlides) { currentSlideIndex = 1; }
+    if (n < 1) { currentSlideIndex = totalSlides; }
+    
+    // Hide all slides
+    slides.forEach(slide => {
+        slide.classList.remove('active', 'prev');
+    });
+    
+    // Remove active from all indicators
+    indicators.forEach(indicator => {
+        indicator.classList.remove('active');
+    });
+    
+    // Show current slide
+    const currentSlide = document.querySelector(`[data-slide="${currentSlideIndex}"]`);
+    if (currentSlide) {
+        currentSlide.classList.add('active');
+        
+        // Create sparkle effect for picture slides
+        if (!currentSlide.classList.contains('transition-slide')) {
+            createSlideSparkles();
+        }
+    }
+    
+    // Update indicator
+    const currentIndicator = indicators[currentSlideIndex - 1];
+    if (currentIndicator) {
+        currentIndicator.classList.add('active');
+    }
+}
+
+function changeSlide(n) {
+    currentSlideIndex += n;
+    showSlide(currentSlideIndex);
+    
+    // Reset auto-play timer
+    if (isAutoPlaying) {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+}
+
+function currentSlide(n) {
+    currentSlideIndex = n;
+    showSlide(currentSlideIndex);
+    
+    // Reset auto-play timer
+    if (isAutoPlaying) {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+}
+
+function startAutoPlay() {
+    autoPlayInterval = setInterval(() => {
+        currentSlideIndex++;
+        showSlide(currentSlideIndex);
+    }, 3000);
+}
+
+function stopAutoPlay() {
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+    }
+}
+
+function toggleAutoPlay() {
+    const autoPlayBtn = document.querySelector('.auto-play-btn');
+    const autoPlayIcon = document.getElementById('auto-play-icon');
+    
+    if (isAutoPlaying) {
+        stopAutoPlay();
+        isAutoPlaying = false;
+        if (autoPlayIcon) autoPlayIcon.textContent = '▶';
+        if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.4)';
+    } else {
+        startAutoPlay();
+        isAutoPlaying = true;
+        if (autoPlayIcon) autoPlayIcon.textContent = '⏸';
+        if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.6)';
+    }
+}
+
+function createSlideSparkles() {
+    const slideshow = document.querySelector('.slideshow-container');
+    if (!slideshow) return;
+    
+    const rect = slideshow.getBoundingClientRect();
+    const sparkleEmojis = ['✨', '🌟', '💫', '⭐', '💖'];
+    
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+            sparkle.style.cssText = `
+                position: fixed;
+                left: ${rect.left + Math.random() * rect.width}px;
+                top: ${rect.top + Math.random() * rect.height}px;
+                font-size: 18px;
+                pointer-events: none;
+                z-index: 1000;
+                animation: sparkleFloat 2s ease-out forwards;
+            `;
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }, i * 200);
     }
 }
 
@@ -400,7 +536,6 @@ function toggleMute() {
         if (volumeIcon) volumeIcon.textContent = '🔇';
     }
 }
-
 function handleAnswer(answer) {
     const website = new BirthdayWebsite();
     const isBirthdayToday = website.isBirthdayToday();
@@ -485,9 +620,9 @@ function createMassiveConfetti() {
     const container = document.getElementById('confetti-container');
     const colors = ['#F29CB8', '#F48FB1', '#FCE4EC', '#F8BBD9', '#EC407A', '#FFB6C1', '#FFC0CB'];
     
-    for (let wave = 0; wave < 8; wave++) { // Increased waves
+    for (let wave = 0; wave < 8; wave++) {
         setTimeout(() => {
-            for (let i = 0; i < 200; i++) { // MASSIVELY increased from 120
+            for (let i = 0; i < 200; i++) { // MASSIVELY increased
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -516,7 +651,7 @@ function createMassiveConfetti() {
                             confetti.remove();
                         }
                     }, 5000);
-                }, i * 20); // Faster spawn
+                }, i * 20);
             }
         }, wave * 600);
     }
@@ -529,6 +664,11 @@ function showMainSite() {
     const website = new BirthdayWebsite();
     website.startContinuousConfetti();
     window.birthdayWebsite = website;
+    
+    // Initialize slideshow with paused autoplay
+    setTimeout(() => {
+        initializeSlideshow();
+    }, 2000);
 }
 
 function handleCakeClick(event) {
@@ -538,7 +678,7 @@ function handleCakeClick(event) {
         window.birthdayWebsite.stopContinuousConfetti();
     }
     
-    for (let i = 0; i < 25; i++) { // Increased from 20
+    for (let i = 0; i < 25; i++) {
         setTimeout(() => {
             const cake = document.createElement('div');
             cake.className = 'falling-cake';
@@ -585,9 +725,9 @@ function handleConfettiClick(event) {
     const container = document.getElementById('confetti-container');
     const colors = ['#F29CB8', '#F48FB1', '#FCE4EC', '#F8BBD9', '#EC407A', '#FFB6C1', '#FFC0CB'];
     
-    for (let wave = 0; wave < 12; wave++) { // Increased from 10
+    for (let wave = 0; wave < 12; wave++) {
         setTimeout(() => {
-            for (let i = 0; i < 180; i++) { // Increased from 150
+            for (let i = 0; i < 180; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -613,7 +753,7 @@ function handleConfettiClick(event) {
                             confetti.remove();
                         }
                     }, 4000);
-                }, i * 10); // Much faster spawn
+                }, i * 10);
             }
         }, wave * 150);
     }
@@ -648,7 +788,7 @@ function handleStarClick(event) {
     // Create enhanced falling stars
     const starEmojis = ['⭐', '🌟', '✨', '💫', '🌠'];
     
-    for (let i = 0; i < 50; i++) { // Increased from 40
+    for (let i = 0; i < 50; i++) {
         setTimeout(() => {
             const star = document.createElement('div');
             star.className = 'falling-star-enhanced';
@@ -667,7 +807,7 @@ function handleStarClick(event) {
     // Create additional floating emojis
     const magicEmojis = ['✨', '🌟', '💫', '⭐', '🎆', '🎇'];
     
-    for (let i = 0; i < 30; i++) { // Increased from 25
+    for (let i = 0; i < 30; i++) {
         setTimeout(() => {
             const magic = document.createElement('div');
             magic.className = 'floating-emoji';
@@ -722,7 +862,7 @@ function wiggleStat(element) {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    for (let i = 0; i < 20; i++) { // Increased from 15
+    for (let i = 0; i < 20; i++) {
         const confetti = document.createElement('div');
         confetti.style.cssText = `
             position: fixed;
@@ -750,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new BirthdayWebsite();
 });
 
-// Add some fun keyboard shortcuts
+// Enhanced keyboard shortcuts
 document.addEventListener('keydown', (e) => {
     if (e.key === 'b' || e.key === 'B') {
         createMassiveConfetti();
@@ -758,7 +898,7 @@ document.addEventListener('keydown', (e) => {
         alert('🎉 Happy Birthday Udita! 🎂\n\nSecret shortcuts:\nB - Confetti burst\nH - This message\nClick 🎂 - Falling cakes\nClick 🎉 - Big confetti\nClick ✨ - Enhanced glow wave & stars\nM - Toggle background music\nSingle Click - Spawn emoji\nS - Secret star shower\n\nMade with ❤️ just for you!');
     } else if (e.key === 'c' || e.key === 'C') {
         // Secret cake rain
-        for (let i = 0; i < 40; i++) { // Increased from 30
+        for (let i = 0; i < 40; i++) {
             setTimeout(() => {
                 const cake = document.createElement('div');
                 cake.className = 'falling-cake';
@@ -784,7 +924,7 @@ document.addEventListener('keydown', (e) => {
         }
     } else if (e.key === 's' || e.key === 'S') {
         // Secret star shower
-        for (let i = 0; i < 60; i++) { // Increased from 50
+        for (let i = 0; i < 60; i++) {
             setTimeout(() => {
                 const star = document.createElement('div');
                 star.className = 'falling-star-enhanced';
@@ -802,10 +942,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Add hover effects for cursor
+// Enhanced hover effects for cursor
 document.addEventListener('mouseenter', (e) => {
-    if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card')) {
-        // Enhanced hover effect for coded heart cursor
+    if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .slide-btn')) {
         const heartTrail = document.querySelectorAll('.coded-heart-trail');
         heartTrail.forEach(heart => {
             heart.style.transform = 'scale(1.3)';
@@ -814,7 +953,7 @@ document.addEventListener('mouseenter', (e) => {
 }, true);
 
 document.addEventListener('mouseleave', (e) => {
-    if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card')) {
+    if (e.target.matches('button, .social-link, .wish-card, .stat, .answer-btn, .proceed-btn, .song-card, .slide-btn')) {
         const heartTrail = document.querySelectorAll('.coded-heart-trail');
         heartTrail.forEach(heart => {
             heart.style.transform = 'scale(1)';
@@ -871,7 +1010,7 @@ document.addEventListener('click', (e) => {
             // Triple click surprise
             const surpriseEmojis = ['🎊', '🥳', '🎉', '🎈', '🎂', '✨'];
             
-            for (let i = 0; i < 50; i++) { // Increased from 40
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const surprise = document.createElement('div');
                     surprise.className = 'click-effect';
@@ -910,6 +1049,7 @@ document.addEventListener('click', (e) => {
                 box-shadow: 0 20px 40px rgba(242, 156, 184, 0.4);
                 border: 3px solid var(--darkest-pink);
                 animation: popupAppear 0.5s ease-out forwards;
+                max-width: 90vw;
             `;
             
             document.body.appendChild(surpriseMsg);
@@ -927,12 +1067,11 @@ document.addEventListener('click', (e) => {
 let lastFrameTime = 0;
 function optimizePerformance() {
     const now = performance.now();
-    if (now - lastFrameTime > 16) { // ~60fps throttling
+    if (now - lastFrameTime > 16) {
         // Cleanup old elements to prevent memory leaks
         const oldElements = document.querySelectorAll('.coded-heart-trail, .confetti, .falling-cake, .falling-star, .falling-star-enhanced, .floating-emoji, .click-effect, .single-click-emoji, .party-confetti-piece');
         oldElements.forEach(el => {
             const rect = el.getBoundingClientRect();
-            // Remove elements that are off-screen or have opacity 0
             if (el.style.opacity === '0' || 
                 rect.top > window.innerHeight + 100 || 
                 rect.bottom < -100 || 
@@ -946,27 +1085,13 @@ function optimizePerformance() {
         
         // Cleanup old confetti pieces
         const confettiPieces = document.querySelectorAll('.confetti-piece');
-        if (confettiPieces.length > 150) { // Increased threshold for more confetti
-            // Remove oldest confetti pieces if too many exist
+        if (confettiPieces.length > 150) {
             for (let i = 0; i < confettiPieces.length - 150; i++) {
                 if (confettiPieces[i].parentNode) {
                     confettiPieces[i].remove();
                 }
             }
         }
-        
-        // Cleanup random emojis that are stuck
-        const randomEmojis = document.querySelectorAll('.random-emoji');
-        randomEmojis.forEach(emoji => {
-            if (!emoji.classList.contains('show') && !emoji.classList.contains('hide')) {
-                // Remove emojis that are in limbo state
-                setTimeout(() => {
-                    if (emoji.parentNode) {
-                        emoji.remove();
-                    }
-                }, 2000);
-            }
-        });
         
         lastFrameTime = now;
     }
@@ -978,11 +1103,9 @@ requestAnimationFrame(optimizePerformance);
 
 // Memory cleanup on page unload
 window.addEventListener('beforeunload', () => {
-    // Stop continuous confetti to prevent memory leaks
     if (window.birthdayWebsite) {
         window.birthdayWebsite.stopContinuousConfetti();
         
-        // Pause all audio
         if (window.birthdayWebsite.bgm) {
             window.birthdayWebsite.bgm.pause();
         }
@@ -991,75 +1114,38 @@ window.addEventListener('beforeunload', () => {
         }
     }
     
-    // Clear all timeouts and intervals
-    const highestTimeoutId = setTimeout(() => {}, 0);
-    for (let i = 0; i < highestTimeoutId; i++) {
-        clearTimeout(i);
+    // Stop slideshow autoplay
+    if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
     }
-    
-    const highestIntervalId = setInterval(() => {}, 0);
-    for (let i = 0; i < highestIntervalId; i++) {
-        clearInterval(i);
-    }
-    
-    // Remove all dynamic elements
-    const dynamicElements = document.querySelectorAll('.coded-heart-trail, .confetti, .confetti-piece, .party-confetti-piece, .falling-cake, .falling-star, .falling-star-enhanced, .floating-emoji, .click-effect, .random-emoji, .single-click-emoji');
-    dynamicElements.forEach(el => {
-        if (el.parentNode) {
-            el.remove();
-        }
-    });
 });
 
-// Visibility change handler to pause animations when tab is not active
+// Visibility change handler
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        // Pause continuous confetti when tab is hidden
         if (window.birthdayWebsite) {
             window.birthdayWebsite.stopContinuousConfetti();
             
-            // Pause BGM
             if (window.birthdayWebsite.bgm && !window.birthdayWebsite.bgm.paused) {
                 window.birthdayWebsite.bgm.pause();
             }
         }
+        
+        // Pause slideshow when tab is hidden
+        if (isAutoPlaying) {
+            stopAutoPlay();
+        }
     } else {
-        // Resume confetti when tab becomes visible again
         if (window.birthdayWebsite && document.getElementById('main-screen').style.display === 'block') {
             setTimeout(() => {
                 window.birthdayWebsite.startContinuousConfetti();
                 
-                // Resume BGM
                 if (window.birthdayWebsite.bgm) {
                     window.birthdayWebsite.bgm.play().catch(e => console.log('BGM resume failed'));
                 }
             }, 1000);
         }
     }
-});
-
-// Throttled resize handler
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        // Cleanup elements that might be positioned incorrectly after resize
-        const offScreenElements = document.querySelectorAll('.coded-heart-trail, .floating-emoji, .click-effect, .single-click-emoji');
-        offScreenElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.left > window.innerWidth || rect.top > window.innerHeight) {
-                if (el.parentNode) {
-                    el.remove();
-                }
-            }
-        });
-    }, 250);
-});
-
-// Enhanced error handling
-window.addEventListener('error', (e) => {
-    console.warn('Birthday website error caught:', e.error);
-    // Continue running even if there are minor errors
 });
 
 // Console welcome message
@@ -1069,12 +1155,14 @@ console.log(`
 🎉 All Enhanced Features loaded successfully:
    • PERMANENT coded heart & butterfly animations
    • Single-click emoji spawn (PERMANENT)
+   • Picture slideshow with auto-play (paused by default)
    • MASSIVE confetti system (ONLY after yes/no)
    • Enhanced star effects with center-to-edge glow
    • Scroll animations for birthday wish page (PERMANENT)
    • Background music integration
    • Song dedication with visualizer
    • Performance optimizations
+   • Native mobile optimizations
 
 🎮 Keyboard shortcuts:
    • B - Confetti burst
@@ -1084,162 +1172,12 @@ console.log(`
    • S - Secret star shower (enhanced)
    • Triple-click - Easter egg surprise
 
-🎵 Audio Features:
-   • BGM plays automatically on loop
-   • Song popup with visualizer
-   • Music controls with progress bar
+📸 Slideshow Features:
+   • 4 pictures with sweet captions
+   • Auto-play (paused by default)
+   • Manual navigation controls
+   • Sparkle effects on picture slides
 
 💖 Made with extra love for Udita's special day!
-   All systems optimized and ready to celebrate! 🥳
+   All systems optimized for Vercel deployment! 🥳
 `);
-
-// Slideshow functionality
-let currentSlideIndex = 1;
-let totalSlides = 7;
-let autoPlayInterval = null;
-let isAutoPlaying = false;
-
-function initializeSlideshow() {
-    showSlide(currentSlideIndex);
-    // startAutoPlay(); // Commented out - autoplay starts paused
-    
-    // Set initial button state to show play icon
-    const autoPlayIcon = document.getElementById('auto-play-icon');
-    const autoPlayBtn = document.querySelector('.auto-play-btn');
-    
-    if (autoPlayIcon) autoPlayIcon.textContent = '▶';
-    if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.4)';
-}
-
-function showSlide(n) {
-    const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    if (n > totalSlides) { currentSlideIndex = 1; }
-    if (n < 1) { currentSlideIndex = totalSlides; }
-    
-    // Hide all slides
-    slides.forEach(slide => {
-        slide.classList.remove('active', 'prev');
-    });
-    
-    // Remove active from all indicators
-    indicators.forEach(indicator => {
-        indicator.classList.remove('active');
-    });
-    
-    // Show current slide
-    const currentSlide = document.querySelector(`[data-slide="${currentSlideIndex}"]`);
-    if (currentSlide) {
-        currentSlide.classList.add('active');
-        
-        // Create sparkle effect for picture slides
-        if (!currentSlide.classList.contains('transition-slide')) {
-            createSlideSparkles();
-        }
-    }
-    
-    // Update indicator
-    const currentIndicator = indicators[currentSlideIndex - 1];
-    if (currentIndicator) {
-        currentIndicator.classList.add('active');
-    }
-}
-
-function changeSlide(n) {
-    currentSlideIndex += n;
-    showSlide(currentSlideIndex);
-    
-    // Reset auto-play timer
-    if (isAutoPlaying) {
-        stopAutoPlay();
-        startAutoPlay();
-    }
-}
-
-function currentSlide(n) {
-    currentSlideIndex = n;
-    showSlide(currentSlideIndex);
-    
-    // Reset auto-play timer
-    if (isAutoPlaying) {
-        stopAutoPlay();
-        startAutoPlay();
-    }
-}
-
-function startAutoPlay() {
-    autoPlayInterval = setInterval(() => {
-        currentSlideIndex++;
-        showSlide(currentSlideIndex);
-    }, 3000); // Change slide every 3 seconds
-}
-
-function stopAutoPlay() {
-    if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
-        autoPlayInterval = null;
-    }
-}
-
-function toggleAutoPlay() {
-    const autoPlayBtn = document.querySelector('.auto-play-btn');
-    const autoPlayIcon = document.getElementById('auto-play-icon');
-    
-    if (isAutoPlaying) {
-        stopAutoPlay();
-        isAutoPlaying = false;
-        if (autoPlayIcon) autoPlayIcon.textContent = '▶';
-        if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.4)';
-    } else {
-        startAutoPlay();
-        isAutoPlaying = true;
-        if (autoPlayIcon) autoPlayIcon.textContent = '⏸';
-        if (autoPlayBtn) autoPlayBtn.style.background = 'rgba(255, 255, 255, 0.6)';
-    }
-}
-
-function createSlideSparkles() {
-    const slideshow = document.querySelector('.slideshow-container');
-    if (!slideshow) return;
-    
-    const rect = slideshow.getBoundingClientRect();
-    const sparkleEmojis = ['✨', '🌟', '💫', '⭐', '💖'];
-    
-    for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-            const sparkle = document.createElement('div');
-            sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
-            sparkle.style.cssText = `
-                position: fixed;
-                left: ${rect.left + Math.random() * rect.width}px;
-                top: ${rect.top + Math.random() * rect.height}px;
-                font-size: 18px;
-                pointer-events: none;
-                z-index: 1000;
-                animation: sparkleFloat 2s ease-out forwards;
-            `;
-            
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 2000);
-        }, i * 200);
-    }
-}
-
-// Initialize slideshow when main site loads
-function showMainSite() {
-    document.getElementById('response-screen').style.display = 'none';
-    document.getElementById('main-screen').style.display = 'block';
-    
-    const website = new BirthdayWebsite();
-    website.startContinuousConfetti();
-    window.birthdayWebsite = website;
-    
-    // Initialize slideshow
-    setTimeout(() => {
-        initializeSlideshow();
-    }, 2000);
-}

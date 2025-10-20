@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Happy Birthday Udita!</title>
+    <meta name="description" content="A magical birthday celebration website for Udita with slideshow, music, and interactive animations">
+    <meta name="theme-color" content="#F29CB8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
     <!-- Background Music -->
-    <audio id="bgm" loop preload="auto">
+    <audio id="bgm" loop preload="none">
         <source src="assets/bgm.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Song Audio -->
-    <audio id="song-audio" preload="auto">
+    <audio id="song-audio" preload="none">
         <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
@@ -53,10 +59,10 @@
             <p class="question-subtitle">Don't you dare lie to me! I have my ways of knowing... 👀</p>
             
             <div class="answer-buttons">
-                <button class="answer-btn" onclick="handleAnswer('yes')">
+                <button class="answer-btn" onclick="handleAnswer('yes')" aria-label="Yes, it's my birthday">
                     🎉 Yes, it's my special day!
                 </button>
-                <button class="answer-btn" onclick="handleAnswer('no')">
+                <button class="answer-btn" onclick="handleAnswer('no')" aria-label="No, it's not my birthday">
                     😅 Nope, not today...
                 </button>
             </div>
@@ -71,7 +77,7 @@
             <div class="response-emoji" id="response-emoji"></div>
             <h2 class="response-title" id="response-title"></h2>
             <p class="response-message" id="response-message"></p>
-            <button class="proceed-btn" onclick="showMainSite()">
+            <button class="proceed-btn" onclick="showMainSite()" aria-label="Proceed to main celebration">
                 Let's Party! 🎉✨
             </button>
         </div>
@@ -112,33 +118,31 @@
                 <div class="hero-brand">UDITA</div>
                 
                 <div class="social-links">
-                    <div class="social-link" onclick="handleCakeClick(event)">🎂</div>
-                    <div class="social-link" onclick="handleConfettiClick(event)">🎉</div>
-                    <div class="social-link" onclick="handleStarClick(event)">✨</div>
+                    <div class="social-link" onclick="handleCakeClick(event)" aria-label="Cake effect">🎂</div>
+                    <div class="social-link" onclick="handleConfettiClick(event)" aria-label="Confetti effect">🎉</div>
+                    <div class="social-link" onclick="handleStarClick(event)" aria-label="Star effect">✨</div>
                 </div>
                 
                 <p class="hero-description">
-                    Happiest Birthday Udita. Created with tons of love
-                    for the most amazing person I know. May all the years of your life filled with love, joy,
-                    celebration, and all the wonderful things of the world.🎈
+                    Happiest Birthday Udita. Created with tons of love for the most amazing person I know. May all the years of your life be filled with love, joy, celebration, and all the wonderful things of the world.🎈
                 </p>
             </div>
 
             <!-- Birthday Stats -->
             <div class="birthday-stats scroll-animate">
-                <div class="stat" onclick="wiggleStat(this)">
+                <div class="stat" onclick="wiggleStat(this)" tabindex="0" role="button" aria-label="Infinite wishes stat">
                     <div class="stat-number">∞</div>
                     <div class="stat-label">WISHES FOR YOU</div>
                 </div>
-                <div class="stat" onclick="wiggleStat(this)">
+                <div class="stat" onclick="wiggleStat(this)" tabindex="0" role="button" aria-label="24/7 happiness stat">
                     <div class="stat-number">24/7</div>
                     <div class="stat-label">HAPPINESS MODE</div>
                 </div>
-                <div class="stat" onclick="wiggleStat(this)">
+                <div class="stat" onclick="wiggleStat(this)" tabindex="0" role="button" aria-label="100% awesome stat">
                     <div class="stat-number">100%</div>
                     <div class="stat-label">PURE AWESOME</div>
                 </div>
-                <div class="stat" onclick="wiggleStat(this)">
+                <div class="stat" onclick="wiggleStat(this)" tabindex="0" role="button" aria-label="More amazing years stat">
                     <div class="stat-number">MORE</div>
                     <div class="stat-label">AMAZING YEARS</div>
                 </div>
@@ -148,19 +152,15 @@
             <div class="birthday-message scroll-animate">
                 <h2>🎊 The Most Epic Birthday Celebration! 🎊</h2>
                 <p>
-                    Another year of being absolutely incredible! 🌟 You've grown, laughed, 
-                    conquered challenges, and made everyone around you smile brighter. 
-                    Today we celebrate not just your birthday, but the amazing person you are 
-                    and all the joy you bring to this world. Here's to more adventures, 
-                    more laughter, and more unforgettable moments! 🥳✨ (This was written by ChatGPT coz I really didn't knew what to say😭)
+                    Another year of being absolutely incredible! 🌟 You've grown, laughed, conquered challenges, and made everyone around you smile brighter. Today we celebrate not just your birthday, but the amazing person you are. Here's to more adventures, more laughter, and more unforgettable moments! 🥳✨ (This was written by ChatGPT coz I really didn't knew what to say😭)
                 </p>
             </div>
 
             <!-- Song Dedication Section -->
-            <div class="song-dedication scroll-animate" onclick="openSongPopup()">
+            <div class="song-dedication scroll-animate" onclick="openSongPopup()" tabindex="0" role="button" aria-label="Open song dedication">
                 <div class="song-card">
                     <div class="album-cover">
-                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="album-placeholder" style="display: none;">
                             <div class="placeholder-icon">🎵</div>
                             <span>Album Cover</span>
@@ -194,7 +194,7 @@
                         <div class="slide active" data-slide="1">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture1.jpg" alt="The pretty girl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 1</span>
@@ -219,7 +219,7 @@
                         <div class="slide" data-slide="3">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture2.jpg" alt="A little dumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 2</span>
@@ -244,7 +244,7 @@
                         <div class="slide" data-slide="5">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture3.jpg" alt="The cutest" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 3</span>
@@ -269,7 +269,7 @@
                         <div class="slide" data-slide="7">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture4.jpg" alt="The most awesome person" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 4</span>
@@ -284,23 +284,23 @@
 
                     <!-- Slideshow Controls -->
                     <div class="slideshow-controls">
-                        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+                        <button class="slide-btn prev-btn" onclick="changeSlide(-1)" aria-label="Previous slide">❮</button>
                         <div class="slide-indicators">
-                            <span class="indicator active" onclick="currentSlide(1)"></span>
-                            <span class="indicator" onclick="currentSlide(2)"></span>
-                            <span class="indicator" onclick="currentSlide(3)"></span>
-                            <span class="indicator" onclick="currentSlide(4)"></span>
-                            <span class="indicator" onclick="currentSlide(5)"></span>
-                            <span class="indicator" onclick="currentSlide(6)"></span>
-                            <span class="indicator" onclick="currentSlide(7)"></span>
+                            <span class="indicator active" onclick="currentSlide(1)" aria-label="Slide 1"></span>
+                            <span class="indicator" onclick="currentSlide(2)" aria-label="Slide 2"></span>
+                            <span class="indicator" onclick="currentSlide(3)" aria-label="Slide 3"></span>
+                            <span class="indicator" onclick="currentSlide(4)" aria-label="Slide 4"></span>
+                            <span class="indicator" onclick="currentSlide(5)" aria-label="Slide 5"></span>
+                            <span class="indicator" onclick="currentSlide(6)" aria-label="Slide 6"></span>
+                            <span class="indicator" onclick="currentSlide(7)" aria-label="Slide 7"></span>
                         </div>
-                        <button class="slide-btn next-btn" onclick="changeSlide(1)">❯</button>
+                        <button class="slide-btn next-btn" onclick="changeSlide(1)" aria-label="Next slide">❯</button>
                     </div>
 
                     <!-- Auto-play Toggle -->
                     <div class="slideshow-options">
-                        <button class="auto-play-btn" onclick="toggleAutoPlay()">
-                            <span id="auto-play-icon">⏸</span> Auto-Play
+                        <button class="auto-play-btn" onclick="toggleAutoPlay()" aria-label="Toggle slideshow autoplay">
+                            <span id="auto-play-icon">▶</span> Auto-Play
                         </button>
                     </div>
                 </div>
@@ -308,37 +308,37 @@
 
             <!-- Wishes Grid -->
             <div class="wishes-grid scroll-animate">
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">🎂</div>
                     <h3>Sweet Dreams Come True</h3>
                     <p>May your birthday cake be as sweet as your heart and may all your wishes come true in the most magical way possible!</p>
                 </div>
                 
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">🌟</div>
                     <h3>Shine Brighter</h3>
                     <p>May you continue to shine brighter than all the stars combined and light up every room you enter!</p>
                 </div>
                 
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">🎈</div>
                     <h3>Endless Joy</h3>
                     <p>May your days be filled with laughter that echoes through the halls and joy that never fades away!</p>
                 </div>
                 
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">🦄</div>
                     <h3>Magical Adventures</h3>
                     <p>May this new year bring you magical adventures, unicorn-level happiness, and dreams that come true!</p>
                 </div>
                 
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">💖</div>
                     <h3>Love & Friendship</h3>
                     <p>May you be surrounded by people who love you as much as you deserve - which is infinitely!</p>
                 </div>
                 
-                <div class="wish-card" onclick="createClickEffect(event)">
+                <div class="wish-card" onclick="createClickEffect(event)" tabindex="0" role="button">
                     <div class="emoji">🎪</div>
                     <h3>Life's Greatest Show</h3>
                     <p>May your life be the greatest show on earth, filled with wonder, excitement, and standing ovations!</p>
@@ -346,7 +346,7 @@
             </div>
             
             <div style="margin-top: 80px; text-align: center; font-size: 16px; opacity: 0.8;" class="scroll-animate">
-                <p>🎨 Done with ❤️ by your favorite person</p>
+                <p>🎨 Made with ❤️ by your favorite person</p>
                 <p style="margin-top: 20px; font-family: 'Dancing Script', cursive; font-size: 24px;">
                     "Because you deserve all the magic in the world!" ✨
                 </p>
@@ -357,10 +357,10 @@
     <!-- Song Popup -->
     <div id="song-popup" class="song-popup hidden">
         <div class="popup-content">
-            <button class="close-popup" onclick="closeSongPopup()">×</button>
+            <button class="close-popup" onclick="closeSongPopup()" aria-label="Close song popup">×</button>
             <div class="popup-header">
                 <div class="popup-album-cover-container">
-                    <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="album-placeholder" style="display: none;">
                         <div class="placeholder-icon">🎵</div>
                         <span>Album Cover</span>
@@ -386,21 +386,19 @@
             <div class="sweet-message">
                 <h4>💕 My Message to You 💕</h4>
                 <p>
-                    "At my worst, you still see the best in me. At my lowest, you lift me up. 
-                    This song reminds me of how lucky I am to have someone like you in my life. Grateful for all the time we have spent together and our all the nonsense talks. I am just happy to have you in my life and would do anything to see you smile. Happy Birthday to the 
-                    most amazing person I know! 🌟💖"
+                    "At my worst, you still see the best in me. This song reminds me of how lucky I am to have you. Grateful for all our time together and nonsense talks. I am just happy to have you in my life and would do anything to see you smile. Happy Birthday! 🌟💖"
                 </p>
                 <div class="message-signature">
-                    <span class="signature">Raunak :) 💕</span>
+                    <span class="signature">Raunak 💕</span>
                 </div>
             </div>
             
             <div class="music-controls">
-                <button id="play-pause-btn" class="control-btn" onclick="toggleSong()">
+                <button id="play-pause-btn" class="control-btn" onclick="toggleSong()" aria-label="Play or pause song">
                     <span id="play-pause-icon">▶</span>
                 </button>
                 <div class="progress-container">
-                    <div class="progress-bar" onclick="seekSong(event)">
+                    <div class="progress-bar" onclick="seekSong(event)" aria-label="Song progress bar">
                         <div class="progress-fill" id="progress-fill"></div>
                     </div>
                     <div class="time-display">
@@ -408,7 +406,7 @@
                         <span id="total-time">0:00</span>
                     </div>
                 </div>
-                <button id="volume-btn" class="control-btn" onclick="toggleMute()">
+                <button id="volume-btn" class="control-btn" onclick="toggleMute()" aria-label="Toggle volume">
                     <span id="volume-icon">🔊</span>
                 </button>
             </div>
