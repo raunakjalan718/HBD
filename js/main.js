@@ -593,7 +593,7 @@ function handleAnswer(answer) {
         emoji = '🥰';
         if (isBirthdayToday) {
             title = 'YAAAY! I KNEW IT!';
-            message = 'Happy Birthday, my amazing Udita! 🎂 I\'ve been secretly planning this surprise for weeks! Get ready for the most EPIC birthday celebration the internet has ever seen! Time to party like there\'s no tomorrow! 🥳✨🎊';
+            message = 'Happy Birthday, my amazing Udita! 🎂 Since you didn\'t want gifts, maybe this is something you\'d want. Get ready for the most EPIC birthday celebration! 🥳✨🎊';
         } else {
             title = 'Haww! Really now?';
             message = 'Why would you fib about your birthday, you silly goose? 😅 That\'s not very nice, but I still adore you anyway! I guess we can pretend it\'s your birthday - because honestly, every day should be a celebration when you\'re this absolutely fantastic! 🎭✨';
@@ -602,7 +602,7 @@ function handleAnswer(answer) {
         if (isBirthdayToday) {
             emoji = '🤨';
             title = 'Oh! Come on now...';
-            message = 'I KNOW it\'s your birthday today! Don\'t try to fool me, you sneaky little birthday girl! 😏 I have it marked on my calendar with 47 different reminders and even asked Siri to remind me! Let\'s celebrate anyway because today is YOUR special day! 🎈🎊';
+            message = 'I KNOW it\'s your birthday! Don\'t try to fool me! 😏 Let\'s celebrate anyways because today is YOUR special day! 🎈🎊';
         } else {
             emoji = '😊';
             title = 'Aww, I know sweetie...';
