@@ -11,19 +11,204 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
-    <!-- Use absolute paths for public folder -->
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/animations.css">
+    
+    <!-- Critical CSS Inline to Fix Loading Issues -->
+    <style>
+        /* CRITICAL ZOOM FIX FOR VERCEL AND MOBILE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html {
+            font-size: 16px !important;
+            -webkit-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+            zoom: 1 !important;
+            transform: none !important;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            cursor: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+            width: 100vw !important;
+            height: 100vh !important;
+            position: relative;
+            transform: none !important;
+            zoom: 1 !important;
+            min-width: 320px;
+            font-size: 16px !important;
+        }
+
+        .loading-container,
+        .question-container,
+        .response-container,
+        .main-container {
+            width: 100vw !important;
+            height: 100vh !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: none !important;
+            zoom: 1 !important;
+            font-size: 16px !important;
+            background: linear-gradient(180deg, 
+                #FFFFFF 0%,
+                #FEF7F9 20%,
+                #FDEEF2 35%,
+                #FCE4EC 50%,
+                #F8BBD9 70%,
+                #F48FB1 85%,
+                #F29CB8 100%
+            );
+        }
+
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(2px);
+            transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 20px;
+        }
+
+        .question-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 20px;
+        }
+
+        .response-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .main-container {
+            display: none;
+            font-family: 'Poppins', sans-serif;
+            color: #2C2C2C;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Basic styling for immediate display */
+        .loader {
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 60px rgba(242, 156, 184, 0.3);
+        }
+
+        .loading-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #880E4F;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            padding: 20px 30px;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            min-width: 180px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 45px rgba(242, 156, 184, 0.3);
+            color: #880E4F;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            line-height: 1.2;
+            min-height: 48px;
+        }
+
+        button:hover,
+        button:active {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 50px rgba(242, 156, 184, 0.4);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Mobile optimizations */
+        @media screen and (max-width: 768px) {
+            html { font-size: 14px !important; }
+            button {
+                min-height: 48px !important;
+                min-width: 48px !important;
+                padding: 12px 20px !important;
+                font-size: 16px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            html { font-size: 13px !important; }
+            .loading-title { font-size: 24px !important; }
+            .loader { padding: 40px 20px !important; }
+        }
+    </style>
+    
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
     <!-- Background Music -->
     <audio id="bgm" loop preload="none">
-        <source src="/assets/bgm.mp3" type="audio/mpeg">
+        <source src="assets/bgm.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Song Audio -->
     <audio id="song-audio" preload="none">
-        <source src="/assets/music.mp3" type="audio/mpeg">
+        <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Heart Cursor Trail Container -->
@@ -168,7 +353,7 @@
             <div class="song-dedication scroll-animate" onclick="openSongPopup()" tabindex="0" role="button" aria-label="Open song dedication">
                 <div class="song-card">
                     <div class="album-cover">
-                        <img src="/assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="album-placeholder" style="display: none;">
                             <div class="placeholder-icon">🎵</div>
                             <span>Album Cover</span>
@@ -202,7 +387,7 @@
                         <div class="slide active" data-slide="1">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="/assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 1</span>
@@ -227,7 +412,7 @@
                         <div class="slide" data-slide="3">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="/assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 2</span>
@@ -252,7 +437,7 @@
                         <div class="slide" data-slide="5">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="/assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 3</span>
@@ -277,7 +462,7 @@
                         <div class="slide" data-slide="7">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="/assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 4</span>
@@ -368,7 +553,7 @@
             <button class="close-popup" onclick="closeSongPopup()" aria-label="Close song popup">×</button>
             <div class="popup-header">
                 <div class="popup-album-cover-container">
-                    <img src="/assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="album-placeholder" style="display: none;">
                         <div class="placeholder-icon">🎵</div>
                         <span>Album Cover</span>
@@ -432,10 +617,43 @@
     <!-- Single Click Emoji Container -->
     <div id="single-click-emoji-container"></div>
 
+    <!-- Debug CSS Loading -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🔍 Debugging CSS loading...');
+            
+            const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+            cssLinks.forEach((link, index) => {
+                console.log(`CSS ${index + 1}: ${link.href}`);
+                
+                link.addEventListener('load', () => {
+                    console.log(`✅ CSS ${index + 1} loaded successfully`);
+                });
+                
+                link.addEventListener('error', () => {
+                    console.error(`❌ CSS ${index + 1} failed to load: ${link.href}`);
+                });
+            });
+            
+            setTimeout(() => {
+                const body = document.body;
+                const computedStyle = window.getComputedStyle(body);
+                console.log('Body background:', computedStyle.backgroundColor);
+                console.log('Body font-family:', computedStyle.fontFamily);
+                
+                if (computedStyle.fontFamily.includes('Poppins')) {
+                    console.log('✅ CSS is working - custom fonts loaded');
+                } else {
+                    console.error('❌ CSS not working - using default fonts');
+                }
+            }, 2000);
+        });
+    </script>
+
     <!-- PERMANENT CODED ANIMATIONS SCRIPT - LOAD FIRST -->
-    <script src="/js/coded-animations.js"></script>
-    <script src="/js/heart-trail.js"></script>
-    <script src="/js/animations.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="js/coded-animations.js"></script>
+    <script src="js/heart-trail.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
