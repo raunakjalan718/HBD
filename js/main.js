@@ -1,3 +1,32 @@
+// Debug function to check file paths
+function debugAssets() {
+    console.log('🔍 Debugging asset loading...');
+    
+    // Check CSS loading
+    const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+    cssLinks.forEach((link, index) => {
+        console.log(`CSS ${index + 1}: ${link.href}`);
+    });
+    
+    // Check image loading
+    const images = document.querySelectorAll('img');
+    images.forEach((img, index) => {
+        console.log(`Image ${index + 1}: ${img.src}`);
+        
+        // Test if image exists
+        const testImg = new Image();
+        testImg.onload = () => console.log(`✅ Image ${index + 1} exists`);
+        testImg.onerror = () => console.error(`❌ Image ${index + 1} not found: ${img.src}`);
+        testImg.src = img.src;
+    });
+    
+    // Check audio loading
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach((audio, index) => {
+        console.log(`Audio ${index + 1}: ${audio.src || audio.querySelector('source')?.src}`);
+    });
+}
+
 // Enhanced BirthdayWebsite class with MASSIVE confetti ONLY after yes/no
 class BirthdayWebsite {
     constructor() {
@@ -536,6 +565,7 @@ function toggleMute() {
         if (volumeIcon) volumeIcon.textContent = '🔇';
     }
 }
+
 function handleAnswer(answer) {
     const website = new BirthdayWebsite();
     const isBirthdayToday = website.isBirthdayToday();
@@ -546,7 +576,7 @@ function handleAnswer(answer) {
         emoji = '🥰';
         if (isBirthdayToday) {
             title = 'YAAAY! I KNEW IT!';
-            message = 'Happy Birthday, my amazing Udita! 🎂 Since you didn\'t want gifts, maybe this is something you\'d want. Get ready for the most EPIC birthday celebration the internet has ever seen! 🥳✨🎊';
+            message = 'Happy Birthday, my amazing Udita! 🎂 I\'ve been secretly planning this surprise for weeks! Get ready for the most EPIC birthday celebration the internet has ever seen! Time to party like there\'s no tomorrow! 🥳✨🎊';
         } else {
             title = 'Haww! Really now?';
             message = 'Why would you fib about your birthday, you silly goose? 😅 That\'s not very nice, but I still adore you anyway! I guess we can pretend it\'s your birthday - because honestly, every day should be a celebration when you\'re this absolutely fantastic! 🎭✨';
@@ -555,7 +585,7 @@ function handleAnswer(answer) {
         if (isBirthdayToday) {
             emoji = '🤨';
             title = 'Oh! Come on now...';
-            message = 'I KNOW it\'s your birthday today! Don\'t try to fool me, you really think I don\'t know your birthday?! 😏 Let\'s celebrate anyways because today is YOUR special day! 🎈🎊';
+            message = 'I KNOW it\'s your birthday today! Don\'t try to fool me, you sneaky little birthday girl! 😏 I have it marked on my calendar with 47 different reminders and even asked Siri to remind me! Let\'s celebrate anyway because today is YOUR special day! 🎈🎊';
         } else {
             emoji = '😊';
             title = 'Aww, I know sweetie...';
@@ -887,6 +917,7 @@ function wiggleStat(element) {
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', () => {
+    debugAssets();
     new BirthdayWebsite();
 });
 
@@ -982,6 +1013,8 @@ document.addEventListener('contextmenu', (e) => {
         pointer-events: none;
         box-shadow: 0 8px 25px rgba(242, 156, 184, 0.4);
         animation: popupAppear 0.3s ease-out forwards;
+        max-width: 90vw;
+        text-align: center;
     `;
     
     document.body.appendChild(message);
@@ -1146,6 +1179,30 @@ document.addEventListener('visibilitychange', () => {
             }, 1000);
         }
     }
+});
+
+// Throttled resize handler
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Cleanup elements that might be positioned incorrectly after resize
+        const offScreenElements = document.querySelectorAll('.coded-heart-trail, .floating-emoji, .click-effect, .single-click-emoji');
+        offScreenElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.left > window.innerWidth || rect.top > window.innerHeight) {
+                if (el.parentNode) {
+                    el.remove();
+                }
+            }
+        });
+    }, 250);
+});
+
+// Enhanced error handling
+window.addEventListener('error', (e) => {
+    console.warn('Birthday website error caught:', e.error);
+    // Continue running even if there are minor errors
 });
 
 // Console welcome message

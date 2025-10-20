@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5">
     <title>Happy Birthday Udita!</title>
     <meta name="description" content="A magical birthday celebration website for Udita with slideshow, music, and interactive animations">
     <meta name="theme-color" content="#F29CB8">
@@ -11,18 +11,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animations.css">
 </head>
 <body>
     <!-- Background Music -->
     <audio id="bgm" loop preload="none">
-        <source src="assets/bgm.mp3" type="audio/mpeg">
+        <source src="./assets/bgm.mp3" type="audio/mpeg">
+        <source src="./assets/bgm.wav" type="audio/wav">
     </audio>
 
     <!-- Song Audio -->
     <audio id="song-audio" preload="none">
-        <source src="assets/music.mp3" type="audio/mpeg">
+        <source src="./assets/music.mp3" type="audio/mpeg">
+        <source src="./assets/music.wav" type="audio/wav">
     </audio>
 
     <!-- Heart Cursor Trail Container -->
@@ -109,9 +111,9 @@
             <!-- Hero Section -->
             <div class="hero-section scroll-animate">
                 <h1 class="hero-greeting">Happy Birthday Cutuee!</h1>
-                <h2 class="hero-title">Just keep smiling :)</h2>
+                <h2 class="hero-title">Step into the future.</h2>
                 <div class="hero-subtitle">
-                    <span>2025</span>
+                    <span>2024</span>
                     <span style="opacity: 0.6;">|</span>
                     <span>BIRTHDAY SPECIAL</span>
                 </div>
@@ -124,7 +126,10 @@
                 </div>
                 
                 <p class="hero-description">
-                    Happiest Birthday Udita. Created with tons of love for the most amazing person I know. May all the years of your life be filled with love, joy, celebration, and all the wonderful things of the world.🎈
+                    This project is a personal web birthday message created with tons of love
+                    for the most amazing person I know. It represents pure joy,
+                    celebration, and all the wonderful memories we've shared together.
+                    Get ready for the most epic birthday celebration ever! 🎈
                 </p>
             </div>
 
@@ -152,7 +157,11 @@
             <div class="birthday-message scroll-animate">
                 <h2>🎊 The Most Epic Birthday Celebration! 🎊</h2>
                 <p>
-                    Another year of being absolutely incredible! 🌟 You've grown, laughed, conquered challenges, and made everyone around you smile brighter. Today we celebrate not just your birthday, but the amazing person you are. Here's to more adventures, more laughter, and more unforgettable moments! 🥳✨ (This was written by ChatGPT coz I really didn't knew what to say😭)
+                    Another year of being absolutely incredible! 🌟 You've grown, laughed, 
+                    conquered challenges, and made everyone around you smile brighter. 
+                    Today we celebrate not just your birthday, but the amazing person you are 
+                    and all the joy you bring to this world. Here's to more adventures, 
+                    more laughter, and more unforgettable moments! 🥳✨
                 </p>
             </div>
 
@@ -160,7 +169,7 @@
             <div class="song-dedication scroll-animate" onclick="openSongPopup()" tabindex="0" role="button" aria-label="Open song dedication">
                 <div class="song-card">
                     <div class="album-cover">
-                        <img src="assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="./assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="album-placeholder" style="display: none;">
                             <div class="placeholder-icon">🎵</div>
                             <span>Album Cover</span>
@@ -194,7 +203,7 @@
                         <div class="slide active" data-slide="1">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="./assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 1</span>
@@ -219,7 +228,7 @@
                         <div class="slide" data-slide="3">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="./assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 2</span>
@@ -244,7 +253,7 @@
                         <div class="slide" data-slide="5">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="./assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 3</span>
@@ -269,7 +278,7 @@
                         <div class="slide" data-slide="7">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="./assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 4</span>
@@ -346,7 +355,7 @@
             </div>
             
             <div style="margin-top: 80px; text-align: center; font-size: 16px; opacity: 0.8;" class="scroll-animate">
-                <p>🎨 Made with ❤️ by your favorite person</p>
+                <p>🎨 Concept, design and development done with ❤️ by your favorite person</p>
                 <p style="margin-top: 20px; font-family: 'Dancing Script', cursive; font-size: 24px;">
                     "Because you deserve all the magic in the world!" ✨
                 </p>
@@ -360,7 +369,7 @@
             <button class="close-popup" onclick="closeSongPopup()" aria-label="Close song popup">×</button>
             <div class="popup-header">
                 <div class="popup-album-cover-container">
-                    <img src="assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="./assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="album-placeholder" style="display: none;">
                         <div class="placeholder-icon">🎵</div>
                         <span>Album Cover</span>
@@ -386,10 +395,15 @@
             <div class="sweet-message">
                 <h4>💕 My Message to You 💕</h4>
                 <p>
-                    "At my worst, you still see the best in me. This song reminds me of how lucky I am to have you. Grateful for all our time together and nonsense talks. I am just happy to have you in my life and would do anything to see you smile. Happy Birthday! 🌟💖"
+                    "At my worst, you still see the best in me. At my lowest, you lift me up. 
+                    At my darkest, you are my light. This song reminds me of how lucky I am 
+                    to have someone like you in my life. You make every day brighter, every 
+                    moment sweeter, and every challenge easier to face. Happy Birthday to the 
+                    most amazing person I know! 🌟💖"
                 </p>
                 <div class="message-signature">
-                    <span class="signature">Raunak 💕</span>
+                    <span>With all my love,</span>
+                    <span class="signature">Your Favorite Person 💕</span>
                 </div>
             </div>
             
@@ -420,9 +434,9 @@
     <div id="single-click-emoji-container"></div>
 
     <!-- PERMANENT CODED ANIMATIONS SCRIPT - LOAD FIRST -->
-    <script src="js/coded-animations.js"></script>
-    <script src="js/heart-trail.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./js/coded-animations.js"></script>
+    <script src="./js/heart-trail.js"></script>
+    <script src="./js/animations.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

@@ -1,3 +1,106 @@
+/* ZOOM FIX - Add at the very top */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Prevent zoom issues */
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    /* FIX ZOOM ISSUES */
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    transform: none;
+    zoom: 1;
+    min-width: 320px; /* Minimum width to prevent zoom */
+}
+
+/* Fix viewport units on mobile */
+@supports (-webkit-touch-callout: none) {
+    .loading-container,
+    .question-container,
+    .response-container,
+    .main-container {
+        height: -webkit-fill-available;
+    }
+}
+
+/* FIX ZOOM ISSUES */
+html {
+    font-size: 16px; /* Base font size */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    /* FIX ZOOM - Remove transform and use proper sizing */
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Fix container sizing issues */
+.loading-container,
+.question-container,
+.response-container,
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    /* Use dvh for better mobile support */
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Prevent zoom issues */
+    transform: none;
+    zoom: 1;
+}
+
+/* Fix responsive units that might cause zoom issues */
+.loader,
+.question-content,
+.response-content {
+    /* Replace problematic vw units with safer alternatives */
+    max-width: min(90vw, 600px);
+    width: 100%;
+    box-sizing: border-box;
+}
 * {
     margin: 0;
     padding: 0;
