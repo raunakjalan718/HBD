@@ -1,25 +1,12 @@
-/* ZOOM FIX - Add at the very top */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
+/* CRITICAL ZOOM FIX FOR VERCEL AND MOBILE */
 html {
-    font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    /* Prevent zoom issues */
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    zoom: 1 !important;
+    transform: none !important;
     overflow-x: hidden;
-    width: 100%;
-    height: 100%;
 }
 
 body {
@@ -32,13 +19,235 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
-    /* FIX ZOOM ISSUES */
-    width: 100vw;
-    height: 100vh;
+    /* CRITICAL ZOOM FIXES */
+    width: 100vw !important;
+    height: 100vh !important;
     position: relative;
-    transform: none;
-    zoom: 1;
-    min-width: 320px; /* Minimum width to prevent zoom */
+    transform: none !important;
+    zoom: 1 !important;
+    min-width: 320px;
+    font-size: 16px !important;
+}
+
+/* Fix all containers */
+.loading-container,
+.question-container,
+.response-container,
+.main-container {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none !important;
+    zoom: 1 !important;
+    font-size: 16px !important;
+}
+
+/* ENHANCED MOBILE OPTIMIZATIONS */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px !important;
+    }
+    
+    /* Make buttons larger for mobile */
+    .answer-btn,
+    .proceed-btn,
+    .slide-btn,
+    .control-btn,
+    .auto-play-btn {
+        min-height: 48px !important;
+        min-width: 48px !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+    }
+    
+    /* Larger touch targets */
+    .social-link {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 24px !important;
+    }
+    
+    .stat {
+        padding: 20px 15px !important;
+        min-height: 120px !important;
+    }
+    
+    /* Better mobile slideshow */
+    .slideshow-wrapper {
+        height: 400px !important;
+    }
+    
+    .picture-frame {
+        width: 280px !important;
+        height: 280px !important;
+    }
+    
+    /* Mobile-friendly navigation */
+    .navbar {
+        padding: 8px 15px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Better mobile spacing */
+    .main-content {
+        padding: 80px 15px 60px !important;
+    }
+    
+    /* Mobile song popup */
+    .popup-content {
+        margin: 10px !important;
+        padding: 20px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 13px !important;
+    }
+    
+    /* Extra small mobile optimizations */
+    .hero-greeting {
+        font-size: 2.5rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .hero-title {
+        font-size: 2rem !important;
+    }
+    
+    .slideshow-wrapper {
+        height: 350px !important;
+    }
+    
+    .picture-frame {
+        width: 220px !important;
+        height: 220px !important;
+    }
+    
+    .slide-caption h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .answer-btn {
+        font-size: 14px !important;
+        padding: 15px 20px !important;
+        margin: 5px !important;
+    }
+    
+    .wishes-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .birthday-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+/* Prevent zoom on form elements */
+button, input, select, textarea {
+    font-size: inherit !important;
+    min-height: 44px;
+    -webkit-appearance: none;
+    border-radius: 8px;
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .loading-container,
+    .question-container,
+    .response-container,
+    .main-container {
+        height: -webkit-fill-available !important;
+    }
+    
+    body {
+        height: -webkit-fill-available !important;
+    }
+}
+
+/* Landscape mobile optimization */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .slideshow-wrapper {
+        height: 300px !important;
+    }
+    
+    .picture-frame {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    
+    .hero-greeting {
+        font-size: 2rem !important;
+    }
+    
+    .main-content {
+        padding: 60px 15px 40px !important;
+    }
+}
+/* CRITICAL ZOOM FIX FOR VERCEL */
+html {
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    zoom: 1 !important;
+    transform: none !important;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    /* CRITICAL ZOOM FIXES */
+    width: 100vw !important;
+    height: 100vh !important;
+    position: relative;
+    transform: none !important;
+    zoom: 1 !important;
+    min-width: 320px;
+    font-size: 16px !important;
+}
+
+/* Fix all containers */
+.loading-container,
+.question-container,
+.response-container,
+.main-container {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none !important;
+    zoom: 1 !important;
+    font-size: 16px !important;
+}
+
+/* Prevent iOS zoom on input focus */
+input, textarea, select {
+    font-size: 16px !important;
+}
+
+/* Fix for mobile browsers */
+@supports (-webkit-touch-callout: none) {
+    .loading-container,
+    .question-container,
+    .response-container,
+    .main-container {
+        height: -webkit-fill-available !important;
+    }
 }
 
 /* Fix viewport units on mobile */
@@ -2056,4 +2265,28 @@ body {
     .main-content {
         padding: 20px;
     }
+}
+/* RESPONSIVE FONT SCALING FIX */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 16px !important;
+    }
+}
+
+/* Prevent zoom on form elements */
+button, input, select, textarea {
+    font-size: inherit !important;
+    min-height: 44px; /* iOS minimum touch target */
 }
