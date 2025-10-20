@@ -11,20 +11,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/animations.css">
+    <!-- Use absolute paths for public folder -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
 </head>
 <body>
     <!-- Background Music -->
     <audio id="bgm" loop preload="none">
-        <source src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/bgm.mp3" type="audio/mpeg">
-        <source src="./assets/bgm.mp3" type="audio/mpeg">
+        <source src="/assets/bgm.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Song Audio -->
     <audio id="song-audio" preload="none">
-        <source src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/music.mp3" type="audio/mpeg">
-        <source src="./assets/music.mp3" type="audio/mpeg">
+        <source src="/assets/music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Heart Cursor Trail Container -->
@@ -169,7 +168,7 @@
             <div class="song-dedication scroll-animate" onclick="openSongPopup()" tabindex="0" role="button" aria-label="Open song dedication">
                 <div class="song-card">
                     <div class="album-cover">
-                        <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="/assets/cover.jpg" alt="At My Worst Album Cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="album-placeholder" style="display: none;">
                             <div class="placeholder-icon">🎵</div>
                             <span>Album Cover</span>
@@ -203,7 +202,7 @@
                         <div class="slide active" data-slide="1">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="/assets/picture1.jpg" alt="The pretty girl" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 1</span>
@@ -228,7 +227,7 @@
                         <div class="slide" data-slide="3">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="/assets/picture2.jpg" alt="A little dumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 2</span>
@@ -253,7 +252,7 @@
                         <div class="slide" data-slide="5">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="/assets/picture3.jpg" alt="The cutest" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 3</span>
@@ -278,7 +277,7 @@
                         <div class="slide" data-slide="7">
                             <div class="slide-content">
                                 <div class="picture-frame">
-                                    <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <img src="/assets/picture4.jpg" alt="The most awesome person" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                                     <div class="picture-placeholder" style="display: none;">
                                         <div class="placeholder-icon">📷</div>
                                         <span>Picture 4</span>
@@ -369,7 +368,7 @@
             <button class="close-popup" onclick="closeSongPopup()" aria-label="Close song popup">×</button>
             <div class="popup-header">
                 <div class="popup-album-cover-container">
-                    <img src="https://raw.githubusercontent.com/raunakjalan718/HBD/main/assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="/assets/cover.jpg" alt="Album Cover" class="popup-album-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     <div class="album-placeholder" style="display: none;">
                         <div class="placeholder-icon">🎵</div>
                         <span>Album Cover</span>
@@ -434,9 +433,9 @@
     <div id="single-click-emoji-container"></div>
 
     <!-- PERMANENT CODED ANIMATIONS SCRIPT - LOAD FIRST -->
-    <script src="./js/coded-animations.js"></script>
-    <script src="./js/heart-trail.js"></script>
-    <script src="./js/animations.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="/js/coded-animations.js"></script>
+    <script src="/js/heart-trail.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

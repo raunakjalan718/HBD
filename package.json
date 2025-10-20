@@ -1,13 +1,16 @@
 {
   "name": "udita-birthday-website",
   "version": "2.0.0",
-  "description": "Enhanced birthday website for Udita with slideshow, music, and animations",
+  "description": "Enhanced birthday website for Udita with slideshow, music, and interactive animations",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'No build process needed - pure HTML/CSS/JS'",
+    "build": "echo 'Static website - no build needed'",
     "start": "echo 'Static website - open index.html'"
   },
   "keywords": ["birthday", "website", "interactive", "slideshow"],
   "author": "Your Favorite Person",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

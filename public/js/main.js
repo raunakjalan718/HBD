@@ -27,6 +27,23 @@ function debugAssets() {
     });
 }
 
+// Debug zoom issues
+function debugZoomIssues() {
+    console.log('🔍 Debugging zoom issues...');
+    console.log('Window inner width:', window.innerWidth);
+    console.log('Window inner height:', window.innerHeight);
+    console.log('Document element client width:', document.documentElement.clientWidth);
+    console.log('Document element client height:', document.documentElement.clientHeight);
+    console.log('Device pixel ratio:', window.devicePixelRatio);
+    console.log('Viewport meta tag:', document.querySelector('meta[name="viewport"]')?.content);
+    
+    // Force reset zoom
+    document.documentElement.style.zoom = '1';
+    document.body.style.zoom = '1';
+    document.documentElement.style.transform = 'none';
+    document.body.style.transform = 'none';
+}
+
 // Enhanced BirthdayWebsite class with MASSIVE confetti ONLY after yes/no
 class BirthdayWebsite {
     constructor() {
@@ -723,7 +740,6 @@ function handleCakeClick(event) {
             }, 3000);
         }, i * 120);
     }
-    
     const popup = document.createElement('div');
     popup.className = 'cake-popup';
     popup.innerHTML = `
@@ -917,6 +933,7 @@ function wiggleStat(element) {
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', () => {
+    debugZoomIssues();
     debugAssets();
     new BirthdayWebsite();
 });
@@ -1220,6 +1237,7 @@ console.log(`
    • Song dedication with visualizer
    • Performance optimizations
    • Native mobile optimizations
+   • Public folder structure for Vercel
 
 🎮 Keyboard shortcuts:
    • B - Confetti burst
@@ -1236,5 +1254,5 @@ console.log(`
    • Sparkle effects on picture slides
 
 💖 Made with extra love for Udita's special day!
-   All systems optimized for Vercel deployment! 🥳
+   All systems optimized for Vercel deployment with public folder! 🥳
 `);
