@@ -240,14 +240,12 @@
 @keyframes titleBounce { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.02) translateY(-5px); } }
 @keyframes questionPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 @keyframes subtitleSway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
-@keyframes buttonPress { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
 @keyframes eyesSpy { 0%, 100% { transform: translateX(0) scale(1); } 25% { transform: translateX(-8px) scale(1.1); } 75% { transform: translateX(8px) scale(1.1); } }
 @keyframes gentleFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
 @keyframes responseFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
 @keyframes responseSpin { 0% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(90deg) scale(1.1); } 50% { transform: rotate(180deg) scale(1.2); } 75% { transform: rotate(270deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
 @keyframes titleWave { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.05); } }
 @keyframes messageSlide { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes proceedPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes navFloat { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
 @keyframes heroGreeting { 0% { opacity: 0; transform: scale(0.5) translateY(50px); } 50% { opacity: 0.8; transform: scale(1.1) translateY(-10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes titleSlideIn { 0% { opacity: 0; transform: translateX(-100px); } 100% { opacity: 1; transform: translateX(0); } }
@@ -317,6 +315,7 @@
     75% { width: 250vw; height: 250vh; opacity: 0.3; transform: translate(-50%, -50%) rotate(270deg); }
     100% { width: 350vw; height: 350vh; opacity: 0; transform: translate(-50%, -50%) rotate(360deg); }
 }
+
 @keyframes enhancedStarFall {
     0% { 
         transform: translateY(-100px) translateX(0) rotate(0deg) scale(1); 

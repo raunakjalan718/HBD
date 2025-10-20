@@ -551,7 +551,7 @@ function toggleSong() {
             });
         }).catch(e => {
             console.log('Song play failed:', e);
-            alert('Please add the music.mp3 file to the assets folder to play the song!');
+            alert('Please add the music.mp3 file to the public/assets folder to play the song!');
         });
     }
 }
@@ -740,6 +740,7 @@ function handleCakeClick(event) {
             }, 3000);
         }, i * 120);
     }
+    
     const popup = document.createElement('div');
     popup.className = 'cake-popup';
     popup.innerHTML = `
@@ -937,7 +938,6 @@ document.addEventListener('DOMContentLoaded', () => {
     debugAssets();
     new BirthdayWebsite();
 });
-
 // Enhanced keyboard shortcuts
 document.addEventListener('keydown', (e) => {
     if (e.key === 'b' || e.key === 'B') {
