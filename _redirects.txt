@@ -1,0 +1,8 @@
+# Redirect all traffic to HTTPS
+http://udita-birthday.netlify.app/* https://udita-birthday.netlify.app/:splat 301!
+
+# Handle SPA routing (if needed)
+/*    /index.html   200
+
+# Asset redirects for better caching
+/assets/*  /public/assets/:splat  200

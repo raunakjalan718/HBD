@@ -1,0 +1,58 @@
+[build]
+  # Build command (not needed for static site)
+  command = "echo 'Static site - no build needed'"
+  
+  # Publish directory - where your built site files are located
+  publish = "."
+  
+  # Base directory for build
+  base = "."
+
+[build.environment]
+  # Node version for any build processes
+  NODE_VERSION = "18"
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/public/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirects for SPA behavior (optional)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+
+# Force HTTPS
+[[redirects]]
+  from = "http://udita-birthday.netlify.app/*"
+  to = "https://udita-birthday.netlify.app/:splat"
+  status = 301
+  force = true
+
+# Custom 404 page (optional)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

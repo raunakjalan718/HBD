@@ -1,16 +1,23 @@
 {
   "name": "udita-birthday-website",
   "version": "2.0.0",
-  "description": "Enhanced birthday website for Udita with slideshow, music, and interactive animations",
+  "description": "Enhanced birthday website for Udita with slideshow, music, and interactive animations - Netlify optimized",
   "main": "index.html",
   "scripts": {
     "build": "echo 'Static website - no build needed'",
-    "start": "echo 'Static website - open index.html'"
+    "start": "echo 'Static website - open index.html'",
+    "dev": "echo 'Static website - open index.html'",
+    "netlify-build": "echo 'Static site ready for Netlify'"
   },
-  "keywords": ["birthday", "website", "interactive", "slideshow"],
+  "keywords": ["birthday", "website", "interactive", "slideshow", "netlify"],
   "author": "Your Favorite Person",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raunakjalan718/HBD.git"
+  },
+  "homepage": "https://udita-birthday.netlify.app"
 }
