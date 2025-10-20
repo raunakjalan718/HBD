@@ -1,0 +1,41 @@
+{
+  "name": "udita-birthday-website",
+  "version": "2.0.0",
+  "description": "A magical, interactive birthday website with coded animations and delightful surprises",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "open": "start http://localhost:8000",
+    "build": "echo 'No build process needed - pure HTML/CSS/JS'",
+    "deploy": "echo 'Ready for deployment - upload all files to web server'",
+    "test": "echo 'Open index.html in browser to test'"
+  },
+  "keywords": [
+    "birthday",
+    "website", 
+    "celebration",
+    "interactive",
+    "animations",
+    "heart-trail",
+    "butterfly",
+    "confetti",
+    "udita",
+    "party"
+  ],
+  "author": "Friend",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raunakjalan718/HBD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raunakjalan718/HBD"
+  },
+  "homepage": "https://username.github.io/udita-birthday-website/",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
