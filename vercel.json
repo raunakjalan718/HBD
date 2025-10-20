@@ -2,64 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "**/*",
+      "src": "index.html",
       "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/css/(.*)",
-      "dest": "/css/$1"
     },
     {
-      "src": "/js/(.*)",
-      "dest": "/js/$1"
+      "src": "css/**",
+      "use": "@vercel/static"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "src": "js/**",
+      "use": "@vercel/static"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/css/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/assets/(.*\\.mp3)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "audio/mpeg"
-        }
-      ]
-    },
-    {
-      "source": "/assets/(.*\\.(jpg|jpeg|png|gif|webp))",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/$1"
-        }
-      ]
+      "src": "assets/**",
+      "use": "@vercel/static"
     }
   ]
 }
